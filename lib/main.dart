@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:manger_de_saison/food_card.dart';
 
 import 'food.dart';
@@ -25,9 +26,9 @@ const MaterialColor spring = MaterialColor(
   },
 );
 const MaterialColor summer = MaterialColor(
-  0xFFFFF81F,
+  0xFFFFFA70,
   <int, Color>{
-    100: Color(0xFFFFF81F), 
+    100: Color(0xFFFFFA70), 
   },
 );
 const MaterialColor autumn = MaterialColor(
@@ -81,22 +82,30 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
+  int? monthSelected;
+
+  @override
+  void initState() {
+    super.initState();
+    monthSelected = DateTime.now().month - 1;
+  }
+
   @override
   Widget build(BuildContext context) {
     final months = <String>[
-      'Janvier',
-      'Février',
-      'Mars',
-      'Avril',
-      'Mai',
-      'Juin',
-      'Juillet',
-      'Août',
-      'Septembre',
-      'Octobre',
-      'Novembre',
-      'Décembre',
-      'Tout'
+      'JANVIER',
+      'FÉVRIER',
+      'MARS',
+      'AVRIL',
+      'MAI',
+      'JUIN',
+      'JUILLET',
+      'AOÛT',
+      'SEPTEMBRE',
+      'OCTOBRE',
+      'NOVEMBRE',
+      'DÉCEMBRE',
+      'TOUT'
     ];
 
     final List<DropdownMenuEntry<String>> monthEntries =
@@ -104,14 +113,21 @@ class _MainAppState extends State<MainApp> {
     for (final String month in months) {
       monthEntries.add(
         DropdownMenuEntry<String>(
-            value: month.toUpperCase(), label: month.toUpperCase()),
+            value: months.indexOf(month).toString(), label: month),
       );
     }
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(fontFamily: 'Khand'),
       home: Scaffold(
-        backgroundColor: Colors.pink,
+        backgroundColor: monthSelected! < 2 || monthSelected! > 10
+            ? winter
+            : monthSelected! < 5
+                ? spring
+                : monthSelected! < 8
+                    ? summer
+                    : autumn,
         appBar: AppBar(
             centerTitle: true,
             backgroundColor: Colors.white,
@@ -123,7 +139,7 @@ class _MainAppState extends State<MainApp> {
             ),
             title: DropdownMenu(
               dropdownMenuEntries: monthEntries,
-              initialSelection: "TOUT",
+              initialSelection: monthSelected.toString(),
               enableSearch: false,
               trailingIcon: const Icon(
                 Icons.arrow_drop_down,
@@ -135,6 +151,13 @@ class _MainAppState extends State<MainApp> {
                   color: Colors.transparent,
                 ),
               ),
+              onSelected: (value) {
+                debugPrint(value);
+                setState(() {
+                  monthSelected = int.parse(value!);
+                  debugPrint(monthSelected.toString());
+                });
+              }
             ),
             actions: [
               IconButton(
@@ -145,16 +168,17 @@ class _MainAppState extends State<MainApp> {
             ]),
         body: GridView.count(
             crossAxisCount: 3,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-            padding: const EdgeInsets.all(10),
+            crossAxisSpacing: 7,
+            mainAxisSpacing: 7,
+            childAspectRatio: 0.85,
+            padding: const EdgeInsets.all(7),
             children: <Widget>[
               FoodCard(
                 food: Food(
-                  name: 'Carotte',
+                  name: 'Aubergine',
                   type: 0,
                   months: ['Janvier', 'Février', 'Mars'],
-                  image: 'assets/images/carrot.svg'
+                  image: 'assets/pics/eggplant.svg'
                 )
               ),
               FoodCard(
@@ -162,7 +186,15 @@ class _MainAppState extends State<MainApp> {
                   name: 'Carotte',
                   type: 0,
                   months: ['Janvier', 'Février', 'Mars'],
-                  image: 'assets/images/carrot.svg'
+                  image: 'assets/pics/carrot.svg'
+                )
+              ),
+              FoodCard(
+                food: Food(
+                  name: 'Champignon de Paris',
+                  type: 0,
+                  months: ['Janvier', 'Février', 'Mars'],
+                  image: 'assets/pics/mushroom.svg'
                 )
               ),
               FoodCard(
@@ -170,15 +202,7 @@ class _MainAppState extends State<MainApp> {
                   name: 'Carotte',
                   type: 0,
                   months: ['Janvier', 'Février', 'Mars'],
-                  image: 'assets/images/carrot.svg'
-                )
-              ),
-              FoodCard(
-                food: Food(
-                  name: 'Carotte',
-                  type: 0,
-                  months: ['Janvier', 'Février', 'Mars'],
-                  image: 'assets/images/carrot.svg'
+                  image: 'assets/pics/carrot.svg'
                 )
               ),
             ]),
