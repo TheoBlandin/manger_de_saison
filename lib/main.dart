@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -108,7 +109,7 @@ class _MainAppState extends State<MainApp> {
     // ignore: curly_braces_in_flow_control_structures
     if (jsonParse == null)
       readJson();
-    else {
+    else if (foods.isEmpty) {
       jsonParse.forEach((key, value) {
         var newFood = Food(
           name: key,
@@ -145,8 +146,8 @@ class _MainAppState extends State<MainApp> {
             value: months.indexOf(month).toString(), label: month),
       );
     }
-    var currentFoods = <Widget>[];
 
+    var currentFoods = <FoodCard>[];
     if (foods == []) {
       return const Center(
         child: CircularProgressIndicator(),
@@ -154,13 +155,20 @@ class _MainAppState extends State<MainApp> {
     }
     else {
       setState(() {
-        currentFoods = foods
-            .where((food) => food.monthsGetter.contains(months[monthSelected!].toLowerCase()))
-            .map((food) => FoodCard(food: food))
-            .toList();
+        currentFoods = []; // reset
+        if (monthSelected == 12) { // "All" selected
+          currentFoods = foods
+              .map((food) => FoodCard(food: food))
+              .toList();
+        }
+        else {
+          currentFoods = foods
+              .where((food) => food.monthsGetter.contains(months[monthSelected!].toLowerCase()))
+              .map((food) => FoodCard(food: food))
+              .toList();
+        }
       });
     }
-    
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -182,27 +190,49 @@ class _MainAppState extends State<MainApp> {
               color: Colors.black,
               onPressed: () {},
             ),
-            title: DropdownMenu(
-                dropdownMenuEntries: monthEntries,
-                initialSelection: monthSelected.toString(),
-                enableSearch: false,
-                trailingIcon: const Icon(
-                  Icons.arrow_drop_down,
-                  color: Colors.black,
-                ),
-                width: 140,
-                inputDecorationTheme: const InputDecorationTheme(
-                  outlineBorder: BorderSide(
-                    color: Colors.transparent,
-                  ),
-                ),
-                onSelected: (value) {
-                  debugPrint(value);
+            // title: DropdownMenu(
+            //     dropdownMenuEntries: monthEntries,
+            //     initialSelection: monthSelected.toString(),
+            //     enableSearch: false,
+            //     trailingIcon: const Icon(
+            //       Icons.arrow_drop_down,
+            //       color: Colors.black,
+            //     ),
+            //     width: 140,
+            //     inputDecorationTheme: const InputDecorationTheme(
+            //       outlineBorder: BorderSide(
+            //         color: Colors.transparent,
+            //       ),
+            //     ),
+            //     onSelected: (value) {
+            //       debugPrint(value);
+            //       setState(() {
+            //         monthSelected = int.parse(value!);
+            //         debugPrint(monthSelected.toString());
+            //       });
+            //     }),
+            title: DropdownButtonHideUnderline(
+              child: DropdownButton2<String>(
+                items: months.map((String month) => DropdownMenuItem<String>(
+                  value: months.indexOf(month).toString(),
+                  child: Text(month, style: GoogleFonts.khand(
+                    color: Colors.black,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400,
+                    height: 1.2,
+                  )),
+                )).toList(),
+                value: monthSelected.toString(),
+                onChanged: (String? value) {
                   setState(() {
                     monthSelected = int.parse(value!);
-                    debugPrint(monthSelected.toString());
                   });
-                }),
+                },
+                dropdownStyleData: const DropdownStyleData(
+                  maxHeight: 350,
+                )
+              ),
+            ),
             actions: [
               IconButton(
                 icon: const Icon(Icons.search),

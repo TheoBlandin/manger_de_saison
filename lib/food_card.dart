@@ -9,6 +9,8 @@ class FoodCard extends StatelessWidget {
 
   const FoodCard({super.key, required this.food});
 
+  Food get foodGetter => food;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,7 +27,7 @@ class FoodCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: Padding(
-          padding: const EdgeInsets.only(top: 0, bottom: 3, right: 5, left: 5),
+          padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 5),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
