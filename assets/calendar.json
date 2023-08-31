@@ -1,428 +1,428 @@
 {
   "Abricot": {
     "season": ["juin", "juillet", "septembre"],
-    "type": 1
+    "type": 0
   },
   "Ail": {
     "season": ["juillet", "août", "septembre", "octobre", "novembre", "décembre"],
-    "type": 0,
+    "type": 1,
     "pic": "assets/pics/garlic.svg"
   },
   "Amande": {
     "season": ["juin", "septembre"],
-    "type": 1
+    "type": 0
   },
   "Ananas": {
     "season": ["novembre", "décembre", "janvier", "février", "mars"],
-    "type": 1,
+    "type": 0,
     "pic": "assets/pics/pineapple.svg"
   },
   "Artichaut": {
     "season": ["mai", "juin", "juillet", "août", "septembre"],
-    "type": 0
+    "type": 1
   },
   "Asperge": {
     "season": ["avril", "mai", "juin"],
-    "type": 0
+    "type": 1
   },
   "Aubergine": {
     "season": ["juin", "juillet", "août", "septembre"],
-    "type": 0,
+    "type": 1,
     "pic": "assets/pics/eggplant.svg"
   },
   "Avocat": {
     "season": ["janvier", "février", "mars", "avril", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"],
-    "type": 1,
+    "type": 0,
     "pic": "assets/pics/avocado.svg"
   },
   "Banane": {
     "season": ["janvier", "février", "mars", "avril"],
-    "type": 1,
+    "type": 0,
     "pic": "assets/pics/banana.svg"
   },
   "Betterave": {
     "season": ["janvier", "février", "mars", "octobre", "novembre", "décembre"],
-    "type": 0
+    "type": 1
   },
   "Blette": {
     "season": ["juin", "juillet", "août", "septembre", "octobre", "novembre"],
-    "type": 0
+    "type": 1
   },
   "Brocoli": {
     "season": ["septembre", "octobre", "novembre"],
-    "type": 0,
+    "type": 1,
     "pic": "assets/pics/broccoli.svg"
   },
   "Brugnon": {
     "season": ["juillet", "août", "septembre"],
-    "type": 1
+    "type": 0
   },
   "Cardon": {
     "season": ["janvier", "février", "mars"],
-    "type": 0
+    "type": 1
   },
   "Carotte": {
     "season": ["janvier", "février", "mars", "septembre", "octobre", "novembre", "décembre"],
-    "type": 0,
+    "type": 1,
     "pic": "assets/pics/carrot.svg"
   },
   "Cassis": {
     "season": ["juin", "juillet", "août"],
-    "type": 1
+    "type": 0
   },
   "Céléri": {
     "season": ["janvier", "février", "mars", "octobre", "novembre", "décembre"],
-    "type": 0
+    "type": 1
   },
   "Cèpe": {
     "season": ["octobre", "novembre", "décembre"],
-    "type": 0,
+    "type": 1,
     "pic": "assets/pics/mushroom.svg"
   },
   "Cerise": {
     "season": ["juin", "juillet"],
-    "type": 1,
+    "type": 0,
     "pic": "assets/pics/cherries.svg"
   },
   "Champignon de Paris": {
     "season": ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"],
-    "type": 0,
+    "type": 1,
     "pic": "assets/pics/mushroom.svg"
   },
   "Châtaigne": {
     "season": ["septembre", "octobre", "novembre"],
-    "type": 1,
+    "type": 0,
     "pic": "assets/pics/chestnut.svg"
   },
   "Chou": {
     "season": ["janvier", "février", "mars", "octobre", "novembre", "décembre"],
-    "type": 0
+    "type": 1
   },
   "Chou de Bruxelles": {
     "season": ["janvier", "février", "mars", "octobre", "novembre", "décembre"],
-    "type": 0
+    "type": 1
   },
   "Chou Chinois": {
     "season": ["octobre", "novembre", "décembre"],
-    "type": 0
+    "type": 1
   },
   "Chou-Fleur": {
     "season": ["janvier", "février", "mars", "septembre", "octobre", "novembre", "décembre"],
-    "type": 0
+    "type": 1
   },
   "Chou Kale": {
     "season": ["janvier", "février", "mars", "octobre", "novembre", "décembre"],
-    "type": 0
+    "type": 1
   },
   "Chou Rouge": {
     "season": ["avril", "mai", "juin", "juillet", "août", "septembre"],
-    "type": 0
+    "type": 1
   },
   "Citron": {
     "season": ["janvier", "février"],
-    "type": 1,
+    "type": 0,
     "pic": "assets/pics/lemon.svg"
   },
   "Clémentine": {
     "season": ["janvier", "février", "novembre", "décembre"],
-    "type": 1,
+    "type": 0,
     "pic": "assets/pics/orange.svg"
   },
   "Coing": {
     "season": ["octobre"],
-    "type": 1
+    "type": 0
   },
   "Concombre": {
     "season": ["mai", "juin", "juillet", "août", "septembre", "octobre"],
-    "type": 0,
+    "type": 1,
     "pic": "assets/pics/cucumber.svg"
   },
   "Courge": {
     "season": ["janvier", "septembre", "octobre", "novembre", "décembre"],
-    "type": 0
+    "type": 1
   },
   "Courgette": {
     "season": ["mai", "juin", "juillet", "août", "septembre", "octobre"],
-    "type": 0
+    "type": 1
   },
   "Cresson": {
     "season": ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"],
-    "type": 0
+    "type": 1
   },
   "Crosne": {
     "season": ["janvier", "février", "mars"],
-    "type": 0
+    "type": 1
   },
   "Échalote": {
     "season": ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"],
-    "type": 0
+    "type": 1
   },
   "Endive": {
     "season": ["janvier", "février", "mars", "avril", "mai", "octobre"],
-    "type": 0
+    "type": 1
   },
   "Épinard": {
     "season": ["janvier", "février", "mars", "avril", "mai", "septembre", "octobre", "novembre", "décembre"],
-    "type": 0
+    "type": 1
   },
   "Datte": {
     "season": ["octobre", "novembre", "décembre"],
-    "type": 1
+    "type": 0
   },
   "Fenouil": {
     "season": ["avril", "juin", "juillet", "août", "septembre", "octobre", "novembre"],
-    "type": 0
+    "type": 1
   },
   "Figue": {
     "season": ["juillet", "août", "septembre", "octobre"],
-    "type": 1
+    "type": 0
   },
   "Fraise": {
     "season": ["mai", "juin", "juillet"],
-    "type": 1,
+    "type": 0,
     "pic": "assets/pics/strawberry.svg"
   },
   "Framboise": {
     "season": ["juin", "juillet", "août"],
-    "type": 1
+    "type": 0
   },
   "Fruit de la Passion": {
     "season": ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"],
-    "type": 1
+    "type": 0
   },
   "Goyave": {
     "season": ["janvier", "février", "mars"],
-    "type": 1
+    "type": 0
   },
   "Grenade": {
     "season": ["janvier", "février", "novembre", "décembre"],
-    "type": 1
+    "type": 0
   },
   "Groseille": {
     "season": ["juin", "juillet", "août"],
-    "type": 1
+    "type": 0
   },
   "Haricot Vert": {
     "season": ["juin", "juillet", "août", "septembre", "octobre"],
-    "type": 0
+    "type": 1
   },
   "Kaki": {
     "season": ["janvier", "octobre", "novembre", "décembre"],
-    "type": 1
+    "type": 0
   },
   "Kiwi": {
     "season": ["janvier", "février", "mars", "novembre", "décembre"],
-    "type": 1,
+    "type": 0,
     "pic": "assets/pics/kiwi.svg"
   },
   "Laitue": {
     "season": ["mai", "juin", "juillet", "août", "septembre"],
-    "type": 0,
+    "type": 1,
     "pic": "assets/pics/lettuce.svg"
   },
   "Litchi": {
     "season": ["janvier", "février", "mars"],
-    "type": 1
+    "type": 0
   },
   "Mâche": {
     "season": ["janvier", "février", "octobre", "novembre", "décembre"],
-    "type": 0
+    "type": 1
   },
   "Maïs": {
     "season": ["juillet", "août", "septembre"],
-    "type": 0,
+    "type": 1,
     "pic": "assets/pics/corn.svg"
   },
   "Mandarine": {
     "season": ["janvier", "février", "novembre", "décembre"],
-    "type": 1,
+    "type": 0,
     "pic": "assets/pics/orange.svg"
   },
   "Mangue": {
     "season": ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"],
-    "type": 1,
+    "type": 0,
     "pic": "assets/pics/mango.svg"
   },
   "Melon": {
     "season": ["juin", "juillet", "août", "septembre"],
-    "type": 1,
+    "type": 0,
     "pic": "assets/pics/melon.svg"
   },
   "Mirabelle": {
     "season": ["août", "septembre"],
-    "type": 1
+    "type": 0
   },
   "Mûre": {
     "season": ["avril", "mai", "juin", "juillet", "août", "septembre"],
-    "type": 1
+    "type": 0
   },
   "Myrtille": {
     "season": ["juillet", "août", "septembre"],
-    "type": 1,
+    "type": 0,
     "pic": "assets/pics/blueberries.svg"
   },
   "Navet": {
     "season": ["janvier", "février", "mars", "avril", "mai", "octobre", "novembre", "décembre"],
-    "type": 0
+    "type": 1
   },
   "Nectarine": {
     "season": ["août", "septembre"],
-    "type": 1
+    "type": 0
   },
   "Noisette": {
     "season": ["août", "septembre", "octobre"],
-    "type": 1
+    "type": 0
   },
   "Noix": {
     "season": ["septembre", "octobre", "novembre"],
-    "type": 1
+    "type": 0
   },
   "Noix de Coco": {
     "season": ["janvier", "février", "novembre", "décembre"],
-    "type": 1,
+    "type": 0,
     "pic": "assets/pics/coconut.svg"
   },
   "Oignon": {
     "season": ["janvier", "février", "mars", "avril", "septembre", "octobre", "novembre", "décembre"],
-    "type": 0
+    "type": 1
   },
   "Oignon Nouveau": {
     "season": ["avril", "mai", "juin", "juillet"],
-    "type": 0
+    "type": 1
   },
   "Orange": {
     "season": ["janvier", "février", "mars"],
-    "type": 1,
+    "type": 0,
     "pic": "assets/pics/orange.svg"
   },
   "Orange Sanguine": {
     "season": ["janvier", "février", "mars"],
-    "type": 1,
+    "type": 0,
     "pic": "assets/pics/orange.svg"
   },
   "Oseille": {
     "season": ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre"],
-    "type": 0
+    "type": 1
   },
   "Pamplemousse": {
     "season": ["février", "mars", "avril", "mai", "juin"],
-    "type": 1
+    "type": 0
   },
   "Panais": {
     "season": ["janvier", "février", "mars", "octobre", "novembre", "décembre"],
-    "type": 0
+    "type": 1
   },
   "Papaye": {
     "season": ["janvier", "février", "mars"],
-    "type": 1
+    "type": 0
   },
   "Pastèque": {
     "season": ["juin", "juillet", "août", "septembre"],
-    "type": 1,
+    "type": 0,
     "pic": "assets/pics/watermelon.svg"
   },
   "Patate Douce": {
     "season": ["septembre", "octobre", "novembre"],
-    "type": 0,
+    "type": 1,
     "pic": "assets/pics/sweet-potato.svg"
   },
   "Pâtisson": {
     "season": ["juillet", "août", "septembre"],
-    "type": 0
+    "type": 1
   },
   "Pêche": {
     "season": ["juin", "juillet", "août", "septembre"],
-    "type": 1,
+    "type": 0,
     "pic": "assets/pics/peach.svg"
   },
   "Petit Pois": {
     "season": ["mai", "juin", "juillet"],
-    "type": 0
+    "type": 1
   },
   "Persil": {
     "season": ["avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre"],
-    "type": 0
+    "type": 1
   },
   "Pleurote": {
     "season": ["octobre", "novembre", "décembre"],
-    "type": 0,
+    "type": 1,
     "pic": "assets/pics/mushroom.svg"
   },
   "Poire": {
     "season": ["janvier", "février", "mars", "août", "septembre", "octobre", "novembre", "décembre"],
-    "type": 1,
+    "type": 0,
     "pic": "assets/pics/pear.svg"
   },
   "Poireau": {
     "season": ["janvier", "février", "mars", "avril", "septembre", "octobre", "novembre", "décembre"],
-    "type": 0
+    "type": 1
   },
   "Pois Gourmand": {
     "season": ["avril", "mai", "juin"],
-    "type": 0
+    "type": 1
   },
   "Poivron": {
     "season": ["juin", "juillet", "août", "septembre"],
-    "type": 0,
+    "type": 1,
     "pic": "assets/pics/bell-pepper.svg"
   },
   "Pomelo": {
     "season": ["janvier", "février", "mars"],
-    "type": 1
+    "type": 0
   }, 
   "Pomme": {
     "season": ["janvier", "février", "mars", "avril", "août", "septembre", "octobre", "novembre", "décembre"],
-    "type": 1,
+    "type": 0,
     "pic": "assets/pics/apple.svg"
   },
   "Potimarron": {
     "season": ["octobre", "novembre", "décembre"],
-    "type": 0
+    "type": 1
   },
   "Potiron": {
     "season": ["janvier", "septembre", "octobre", "novembre", "décembre"],
-    "type": 0
+    "type": 1
   },
   "Prune": {
     "season": ["juillet", "août", "septembre"],
-    "type": 1
+    "type": 0
   },
   "Quetsche": {
     "season": ["août", "septembre", "octobre"],
-    "type": 1
+    "type": 0
   },
   "Radis": {
     "season": ["mars", "avril", "mai", "juin"],
-    "type": 0
+    "type": 1
   },
   "Raisin": {
     "season": ["septembre", "octobre"],
-    "type": 1,
+    "type": 0,
     "pic": "assets/pics/grapes.svg"
   },
   "Rhubarbe": {
     "season": ["avril", "mai", "juin"],
-    "type": 0
+    "type": 1
   },
   "Roquette": {
     "season": ["mai", "juin", "juillet", "août", "septembre", "octobre", "novembre"],
-    "type": 0
+    "type": 1
   },
   "Rutabaga": {
     "season": ["octobre", "novembre", "décembre"],
-    "type": 0
+    "type": 1
   },
   "Salsifis": {
     "season": ["janvier", "février", "mars", "novembre", "décembre"],
-    "type": 0
+    "type": 1
   },
   "Tomate": {
     "season": ["juin", "juillet", "août", "septembre"],
-    "type": 1,
+    "type": 0,
     "pic": "assets/pics/tomato.svg"
   },
   "Topinambour": {
     "season": ["janvier", "février", "novembre", "décembre"],
-    "type": 0
+    "type": 1
   }
 }

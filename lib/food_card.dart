@@ -34,9 +34,9 @@ class FoodCard extends StatelessWidget {
             children: [
             Row(
               children: [
-                Text(food.typeGetter == 0 ? 'L' : 'F',
+                Text(food.typeGetter == 0 ? 'F' : 'L',
                     style: TextStyle(
-                      color: food.typeGetter == 0 ? vegetable : fruit,
+                      color: food.typeGetter == 0 ? fruit : vegetable,
                       fontSize: 23,
                       fontWeight: FontWeight.w600,
                       height: 1.2,

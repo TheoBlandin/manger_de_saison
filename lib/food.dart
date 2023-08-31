@@ -1,6 +1,6 @@
 class Food {
   final String _name;
-  final int _type; // 0: vegetable, 1: fruit
+  final int _type; // 0: fruit, 1: vegetable
   final List<String> _months;
   final String _image;
 

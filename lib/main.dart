@@ -86,11 +86,13 @@ class MainApp extends StatefulWidget {
 
 class _MainAppState extends State<MainApp> {
   int? monthSelected;
+  int? sortSelected;
 
   @override
   void initState() {
     super.initState();
     monthSelected = DateTime.now().month - 1;
+    sortSelected = 0;
   }
 
   var foods = <Food>[];
@@ -106,8 +108,11 @@ class _MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: curly_braces_in_flow_control_structures
+    debugPrint("sort selected: ");
+    debugPrint(sortSelected.toString());
+
     if (jsonParse == null)
+      // ignore: curly_braces_in_flow_control_structures
       readJson();
     else if (foods.isEmpty) {
       jsonParse.forEach((key, value) {
@@ -138,6 +143,12 @@ class _MainAppState extends State<MainApp> {
       'TOUT'
     ];
 
+    final sort = <String>[
+      'TOUT',
+      'FRUITS',
+      'LÉGUMES'
+    ];
+
     final List<DropdownMenuEntry<String>> monthEntries =
         <DropdownMenuEntry<String>>[];
     for (final String month in months) {
@@ -163,7 +174,7 @@ class _MainAppState extends State<MainApp> {
         }
         else {
           currentFoods = foods
-              .where((food) => food.monthsGetter.contains(months[monthSelected!].toLowerCase()))
+              .where((food) => (food.monthsGetter.contains(months[monthSelected!].toLowerCase())) && (sortSelected == 0 || food.typeGetter == sortSelected! - 1))
               .map((food) => FoodCard(food: food))
               .toList();
         }
@@ -185,32 +196,32 @@ class _MainAppState extends State<MainApp> {
             centerTitle: true,
             backgroundColor: Colors.white,
             elevation: 0.0,
-            leading: IconButton(
-              icon: const Icon(Icons.filter_list),
-              color: Colors.black,
-              onPressed: () {},
+            leading: DropdownButtonHideUnderline(
+              child: DropdownButton2(
+                customButton: const Icon(
+                  Icons.filter_list,
+                  color: Colors.black,
+                ),
+                items: sort.map((String s) => DropdownMenuItem<String> (
+                  value: sort.indexOf(s).toString(),
+                  child: Text(s, style: GoogleFonts.khand(
+                    color: Colors.black,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400,
+                    height: 1.2,
+                  )),
+                )).toList(),
+                value: sortSelected.toString(),
+                onChanged: (String? value) {
+                  setState(() {
+                    sortSelected = int.parse(value!);
+                  });
+                },
+                dropdownStyleData: const DropdownStyleData(
+                  width: 100,
+                ),
+              ),
             ),
-            // title: DropdownMenu(
-            //     dropdownMenuEntries: monthEntries,
-            //     initialSelection: monthSelected.toString(),
-            //     enableSearch: false,
-            //     trailingIcon: const Icon(
-            //       Icons.arrow_drop_down,
-            //       color: Colors.black,
-            //     ),
-            //     width: 140,
-            //     inputDecorationTheme: const InputDecorationTheme(
-            //       outlineBorder: BorderSide(
-            //         color: Colors.transparent,
-            //       ),
-            //     ),
-            //     onSelected: (value) {
-            //       debugPrint(value);
-            //       setState(() {
-            //         monthSelected = int.parse(value!);
-            //         debugPrint(monthSelected.toString());
-            //       });
-            //     }),
             title: DropdownButtonHideUnderline(
               child: DropdownButton2<String>(
                 items: months.map((String month) => DropdownMenuItem<String>(
@@ -230,7 +241,7 @@ class _MainAppState extends State<MainApp> {
                 },
                 dropdownStyleData: const DropdownStyleData(
                   maxHeight: 350,
-                )
+                ),
               ),
             ),
             actions: [
