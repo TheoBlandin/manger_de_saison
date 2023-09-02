@@ -108,9 +108,6 @@ class _MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint("sort selected: ");
-    debugPrint(sortSelected.toString());
-
     if (jsonParse == null)
       // ignore: curly_braces_in_flow_control_structures
       readJson();
@@ -148,15 +145,6 @@ class _MainAppState extends State<MainApp> {
       'FRUITS',
       'LÉGUMES'
     ];
-
-    final List<DropdownMenuEntry<String>> monthEntries =
-        <DropdownMenuEntry<String>>[];
-    for (final String month in months) {
-      monthEntries.add(
-        DropdownMenuEntry<String>(
-            value: months.indexOf(month).toString(), label: month),
-      );
-    }
 
     var currentFoods = <FoodCard>[];
     if (foods == []) {
