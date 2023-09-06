@@ -117,7 +117,7 @@ class _MainAppState extends State<MainApp> {
           name: key,
           type: value['type'],
           months:
-              (value['season'] as List).map((item) => item as String).toList(),
+              (value['season'] as List).map((item) => item as int).toList(),
           image: value['pic'] ?? 'assets/pics/unknown.svg',
         );
         foods.add(newFood);
@@ -157,12 +157,13 @@ class _MainAppState extends State<MainApp> {
         currentFoods = []; // reset
         if (monthSelected == 12) { // "All" selected
           currentFoods = foods
+              .where((food) => sortSelected == 0 || food.typeGetter == sortSelected! - 1)
               .map((food) => FoodCard(food: food))
               .toList();
         }
         else {
           currentFoods = foods
-              .where((food) => (food.monthsGetter.contains(months[monthSelected!].toLowerCase())) && (sortSelected == 0 || food.typeGetter == sortSelected! - 1))
+              .where((food) => (food.monthsGetter.contains(monthSelected!)) && (sortSelected == 0 || food.typeGetter == sortSelected! - 1))
               .map((food) => FoodCard(food: food))
               .toList();
         }
