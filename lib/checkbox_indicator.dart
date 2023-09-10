@@ -12,18 +12,41 @@ class CheckboxIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Checkbox(
-          value: state,
-          onChanged: null,
-          checkColor: Colors.black,
-          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          fillColor: MaterialStatePropertyAll(state ? inSeason : outSeason),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5),
-          ),
+        // Checkbox(
+        //   value: state,
+        //   onChanged: null,
+        //   checkColor: Colors.black,
+        //   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        //   fillColor: MaterialStatePropertyAll(state ? inSeason : outSeason),
+        //   shape: RoundedRectangleBorder(
+        //     borderRadius: BorderRadius.circular(5),
+        //   ),
+        // ),
+        Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5),
+              child: Container(
+                height: 20,
+                width: 20,
+                decoration: BoxDecoration(
+                  color: state ? inSeason : outSeason,
+                  borderRadius: BorderRadius.circular(5)
+                )
+              )
+            ),
+            state ? const Positioned(
+              top: 4,
+              child: Icon(
+                Icons.check,
+                color: Colors.black,
+                size: 20,
+              )
+            ) : const SizedBox.shrink()
+          ]
         ),
         const SizedBox(
-          height: 3,
+          height: 5,
         ),
         Text(
           month,

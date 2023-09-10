@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:manger_de_saison/checkbox_indicator.dart';
+import 'package:manger_de_saison/preference_button.dart';
 import 'main.dart';
 
 import 'food.dart';
@@ -92,12 +93,40 @@ class _FoodCardState extends State<FoodCard> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: monthsRow1,
                             ),
                             Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: monthsRow2,
                             ),
                           ],
+                        ),
+                        Row(
+                          children: [
+                            PreferenceButton(
+                              text: "J'aime",
+                              icon: const Icon(
+                                Icons.favorite,
+                                color: fullHeart
+                              ),
+                              state: false,
+                              onChanged: (value) {
+                              },
+                            ),
+                            PreferenceButton(
+                              text: "Je n'aime pas",
+                              icon: const Icon(
+                                Icons.heart_broken,
+                                color: brokenHeart
+                              ),
+                              state: false,
+                              onChanged: (value) {
+                              },
+                            )
+                          ]
                         )
                       ],
                     )
