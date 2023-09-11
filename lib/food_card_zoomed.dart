@@ -1,16 +1,19 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'checkbox_indicator.dart';
 import 'preference_button.dart';
 import 'food.dart';
 import 'main.dart';
 
-
 class FoodCardZoomed extends StatefulWidget {
   final Food food;
+  final SharedPreferences prefs;
+  final void Function(int) onChanged;
 
-  const FoodCardZoomed({super.key, required this.food});
+  const FoodCardZoomed({super.key, required this.food, required this.prefs, required this.onChanged});
 
   @override
   _FoodCardZoomedState createState() => _FoodCardZoomedState();
@@ -23,6 +26,17 @@ class _FoodCardZoomedState extends State<FoodCardZoomed> {
   // 0 : no choice
   // 1 : like
   // 2 : dislike
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.prefs.getStringList('likes')?.contains(food.nameGetter) ?? false) {
+      preferenceChoice = 1;
+    }
+    else if (widget.prefs.getStringList('dislikes')?.contains(food.nameGetter) ?? false) {
+      preferenceChoice = 2;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,6 +91,35 @@ class _FoodCardZoomedState extends State<FoodCardZoomed> {
                       ),
                       IconButton(
                         onPressed: () {
+                          if (preferenceChoice != 0) {
+                            if (preferenceChoice == 1) {
+                              List<String> likedFoods = widget.prefs.getStringList('likes') ?? [];
+                              likedFoods.add(food.nameGetter);
+                              widget.prefs.setStringList('likes', likedFoods);
+
+                              List<String> dislikedFoods = widget.prefs.getStringList('dislikes') ?? [];
+                              dislikedFoods.remove(food.nameGetter);
+                              widget.prefs.setStringList('dislikes', dislikedFoods);
+                            }
+                            else {
+                              List<String> dislikedFoods = widget.prefs.getStringList('dislikes') ?? [];
+                              dislikedFoods.add(food.nameGetter);
+                              widget.prefs.setStringList('dislikes', dislikedFoods);
+
+                              List<String> likedFoods = widget.prefs.getStringList('likes') ?? [];
+                              likedFoods.remove(food.nameGetter);
+                              widget.prefs.setStringList('likes', likedFoods);
+                            }
+                          }
+                          else {
+                            List<String> likedFoods = widget.prefs.getStringList('likes') ?? [];
+                            likedFoods.remove(food.nameGetter);
+                            widget.prefs.setStringList('likes', likedFoods);
+
+                            List<String> dislikedFoods = widget.prefs.getStringList('dislikes') ?? [];
+                            dislikedFoods.remove(food.nameGetter);
+                            widget.prefs.setStringList('dislikes', dislikedFoods);
+                          }
                           Navigator.of(context).pop();
                         },
                         icon: const Icon(
@@ -138,6 +181,7 @@ class _FoodCardZoomedState extends State<FoodCardZoomed> {
                               preferenceChoice = 1;
                             });
                           }
+                          widget.onChanged(1);
                         },
                       ),
                       PreferenceButton(
@@ -158,6 +202,7 @@ class _FoodCardZoomedState extends State<FoodCardZoomed> {
                               preferenceChoice = 2;
                             });
                           }
+                          widget.onChanged(2);
                         },
                       )
                     ]

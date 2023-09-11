@@ -1,5 +1,5 @@
 class Food {
-  final String _name;
+  final String _name; // id, unique
   final int _type; // 0: fruit, 1: vegetable
   final List<int> _months;
   final String _image;

@@ -1,15 +1,20 @@
 import 'dart:convert';
-
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:manger_de_saison/food_card.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'food.dart';
 
-void main() {
-  runApp(const MainApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.setStringList('likes', []);
+  prefs.setStringList('dislikes', []);
+
+  runApp(MainApp(prefs: prefs));
 
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent, // transparent status bar
@@ -78,7 +83,9 @@ const MaterialColor outSeason = MaterialColor(
 );
 
 class MainApp extends StatefulWidget {
-  const MainApp({super.key});
+  const MainApp({super.key, required this.prefs});
+
+  final SharedPreferences prefs;
 
   @override
   State<MainApp> createState() => _MainAppState();
@@ -158,13 +165,13 @@ class _MainAppState extends State<MainApp> {
         if (monthSelected == 12) { // "All" selected
           currentFoods = foods
               .where((food) => sortSelected == 0 || food.typeGetter == sortSelected! - 1)
-              .map((food) => FoodCard(food: food))
+              .map((food) => FoodCard(food: food, prefs: widget.prefs))
               .toList();
         }
         else {
           currentFoods = foods
               .where((food) => (food.monthsGetter.contains(monthSelected!)) && (sortSelected == 0 || food.typeGetter == sortSelected! - 1))
-              .map((food) => FoodCard(food: food))
+              .map((food) => FoodCard(food: food, prefs: widget.prefs))
               .toList();
         }
       });

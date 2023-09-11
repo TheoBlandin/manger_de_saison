@@ -3,16 +3,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:manger_de_saison/food_card_zoomed.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'main.dart';
 
 import 'food.dart';
 
-class FoodCard extends StatelessWidget {
+class FoodCard extends StatefulWidget {
   final Food food;
+  final SharedPreferences prefs;
 
-  const FoodCard({super.key, required this.food});
+  const FoodCard({super.key, required this.food, required this.prefs});
 
-  Food get foodGetter => food;
+  @override
+  _FoodCardState createState() => _FoodCardState();
+}
+
+class _FoodCardState extends State<FoodCard> {
+  get prefs => widget.prefs;
+  get food => widget.food;
+  Food get foodGetter => widget.food;
+  
+  int preferenceChoice = 0;
+  @override
+  initState() {
+    super.initState();
+    if (prefs.getStringList('likes')?.contains(food.nameGetter) ?? false) {
+      preferenceChoice = 1;
+    }
+    else if (prefs.getStringList('dislikes')?.contains(food.nameGetter) ?? false) {
+      preferenceChoice = 2;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +42,30 @@ class FoodCard extends StatelessWidget {
         showDialog<void>(
         context: context,
         builder: (BuildContext context) {
-          return FoodCardZoomed(food: food);
+          return FoodCardZoomed(food: food, prefs: prefs, onChanged: (int btnId) {
+            if (btnId == 1) {
+              if (preferenceChoice == 1) {
+                setState(() {
+                  preferenceChoice = 0;
+                });
+              } else {
+                setState(() {
+                  preferenceChoice = 1;
+                });
+              }
+            }
+            else {
+              if (preferenceChoice == 2) {
+                setState(() {
+                  preferenceChoice = 0;
+                });
+              } else {
+                setState(() {
+                  preferenceChoice = 2;
+                });
+              }
+            }
+          });
         });
       },
       child: Container(
@@ -44,14 +88,22 @@ class FoodCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
             Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(food.typeGetter == 0 ? 'F' : 'L',
-                    style: TextStyle(
-                      color: food.typeGetter == 0 ? fruit : vegetable,
-                      fontSize: 23,
-                      fontWeight: FontWeight.w600,
-                      height: 1.2,
-                    ))
+                  style: TextStyle(
+                    color: food.typeGetter == 0 ? fruit : vegetable,
+                    fontSize: 23,
+                    fontWeight: FontWeight.w600,
+                    height: 1.2,
+                  )
+                ),
+                preferenceChoice == 0 ? const SizedBox.shrink() : Icon(
+                  preferenceChoice == 1 ? Icons.favorite : Icons.heart_broken,
+                  color: preferenceChoice == 1 ? fullHeart : brokenHeart,
+                  size: 23,
+                ),
               ],
             ),
             SvgPicture.asset(
