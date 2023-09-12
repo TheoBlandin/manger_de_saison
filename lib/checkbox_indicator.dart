@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'main.dart';
 
+// ignore: must_be_immutable
 class CheckboxIndicator extends StatelessWidget {
   bool state;
   String month;
@@ -12,16 +12,6 @@ class CheckboxIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Checkbox(
-        //   value: state,
-        //   onChanged: null,
-        //   checkColor: Colors.black,
-        //   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        //   fillColor: MaterialStatePropertyAll(state ? inSeason : outSeason),
-        //   shape: RoundedRectangleBorder(
-        //     borderRadius: BorderRadius.circular(5),
-        //   ),
-        // ),
         Stack(
           children: [
             Padding(

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:easy_search_bar/easy_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,8 +14,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
   final SharedPreferences prefs = await SharedPreferences.getInstance();
-  prefs.setStringList('likes', []);
-  prefs.setStringList('dislikes', []);
+  prefs.getStringList("likes") ?? prefs.setStringList("likes", []);
+  prefs.getStringList("dislikes") ?? prefs.setStringList("dislikes", []);
 
   runApp(MainApp(prefs: prefs));
 
@@ -96,6 +97,7 @@ class MainApp extends StatefulWidget {
 class _MainAppState extends State<MainApp> {
   int? monthSelected;
   int? sortSelected;
+  String? searchValue;
   var currentFoods = <FoodCard>[];
 
   final months = <String>[
@@ -157,17 +159,33 @@ class _MainAppState extends State<MainApp> {
     }
 
     if (foods != []) {
-      if (monthSelected == 12) { // "Tout" selected
-        currentFoods = foods
-            .where((food) => sortSelected == 0 || food.typeGetter == sortSelected! - 1)
-            .map((food) => FoodCard(food: food, prefs: widget.prefs))
-            .toList();
+      if (searchValue == null) {
+        if (monthSelected == 12) { // "Tout" selected
+          currentFoods = foods
+              .where((food) => sortSelected == 0 || food.typeGetter == sortSelected! - 1)
+              .map((food) => FoodCard(food: food, prefs: widget.prefs))
+              .toList();
+        }
+        else {
+          currentFoods = foods
+              .where((food) => (food.monthsGetter.contains(monthSelected!)) && (sortSelected == 0 || food.typeGetter == sortSelected! - 1))
+              .map((food) => FoodCard(food: food, prefs: widget.prefs))
+              .toList();
+        }
       }
       else {
-        currentFoods = foods
-            .where((food) => (food.monthsGetter.contains(monthSelected!)) && (sortSelected == 0 || food.typeGetter == sortSelected! - 1))
-            .map((food) => FoodCard(food: food, prefs: widget.prefs))
-            .toList();
+        if (monthSelected == 12) { // "Tout" selected
+          currentFoods = foods
+              .where((food) => sortSelected == 0 || food.typeGetter == sortSelected! - 1 && food.nameGetter.toLowerCase().contains(searchValue!.toLowerCase()))
+              .map((food) => FoodCard(food: food, prefs: widget.prefs))
+              .toList();
+        }
+        else {
+          currentFoods = foods
+              .where((food) => (food.monthsGetter.contains(monthSelected!)) && (sortSelected == 0 || food.typeGetter == sortSelected! - 1) && food.nameGetter.toLowerCase().contains(searchValue!.toLowerCase()))
+              .map((food) => FoodCard(food: food, prefs: widget.prefs))
+              .toList();
+        }
       }
       myGridViewKey = UniqueKey();
     }
@@ -183,65 +201,121 @@ class _MainAppState extends State<MainApp> {
                 : monthSelected! < 8
                     ? summer
                     : autumn,
-        appBar: AppBar(
-            centerTitle: true,
-            backgroundColor: Colors.white,
-            elevation: 0.0,
-            leading: DropdownButtonHideUnderline(
-              child: DropdownButton2(
-                customButton: const Icon(
-                  Icons.filter_list,
+        // appBar: AppBar(
+        //     centerTitle: true,
+        //     backgroundColor: Colors.white,
+        //     elevation: 0.0,
+        //     leading: DropdownButtonHideUnderline(
+        //       child: DropdownButton2(
+        //         customButton: const Icon(
+        //           Icons.filter_list,
+        //           color: Colors.black,
+        //         ),
+        //         items: sort.map((String s) => DropdownMenuItem<String> (
+        //           value: sort.indexOf(s).toString(),
+        //           child: Text(s, style: GoogleFonts.khand(
+        //             color: Colors.black,
+        //             fontSize: 18,
+        //             fontWeight: FontWeight.w400,
+        //             height: 1.2,
+        //           )),
+        //         )).toList(),
+        //         value: sortSelected.toString(),
+        //         onChanged: (String? value) {
+        //           setState(() {
+        //             sortSelected = int.parse(value!);
+        //           });
+        //         },
+        //         dropdownStyleData: const DropdownStyleData(
+        //           width: 100,
+        //         ),
+        //       ),
+        //     ),
+        //     title: DropdownButtonHideUnderline(
+        //       child: DropdownButton2<String>(
+        //         items: months.map((String month) => DropdownMenuItem<String>(
+        //           value: months.indexOf(month).toString(),
+        //           child: Text(month, style: GoogleFonts.khand(
+        //             color: Colors.black,
+        //             fontSize: 18,
+        //             fontWeight: FontWeight.w400,
+        //             height: 1.2,
+        //           )),
+        //         )).toList(),
+        //         value: monthSelected.toString(),
+        //         onChanged: (String? value) {
+        //           setState(() {
+        //             monthSelected = int.parse(value!);
+        //           });
+        //         },
+        //         dropdownStyleData: const DropdownStyleData(
+        //           maxHeight: 350,
+        //         ),
+        //       ),
+        //     ),
+        //     actions: [
+        //       IconButton(
+        //         icon: const Icon(Icons.search),
+        //         color: Colors.black,
+        //         onPressed: () {},
+        //       )
+        //     ]),
+        appBar: EasySearchBar(
+          onSearch: (value) => setState(() { searchValue = value; }),
+          title: DropdownButtonHideUnderline(
+            child: DropdownButton2<String>(
+              items: months.map((String month) => DropdownMenuItem<String>(
+                value: months.indexOf(month).toString(),
+                child: Text(month, style: GoogleFonts.khand(
                   color: Colors.black,
-                ),
-                items: sort.map((String s) => DropdownMenuItem<String> (
-                  value: sort.indexOf(s).toString(),
-                  child: Text(s, style: GoogleFonts.khand(
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w400,
-                    height: 1.2,
-                  )),
-                )).toList(),
-                value: sortSelected.toString(),
-                onChanged: (String? value) {
-                  setState(() {
-                    sortSelected = int.parse(value!);
-                  });
-                },
-                dropdownStyleData: const DropdownStyleData(
-                  width: 100,
-                ),
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400,
+                  height: 1.2,
+                )),
+              )).toList(),
+              value: monthSelected.toString(),
+              onChanged: (String? value) {
+                setState(() {
+                  monthSelected = int.parse(value!);
+                });
+              },
+              dropdownStyleData: const DropdownStyleData(
+                maxHeight: 350,
               ),
             ),
-            title: DropdownButtonHideUnderline(
-              child: DropdownButton2<String>(
-                items: months.map((String month) => DropdownMenuItem<String>(
-                  value: months.indexOf(month).toString(),
-                  child: Text(month, style: GoogleFonts.khand(
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w400,
-                    height: 1.2,
-                  )),
-                )).toList(),
-                value: monthSelected.toString(),
-                onChanged: (String? value) {
-                  setState(() {
-                    monthSelected = int.parse(value!);
-                  });
-                },
-                dropdownStyleData: const DropdownStyleData(
-                  maxHeight: 350,
-                ),
-              ),
-            ),
-            actions: [
-              IconButton(
-                icon: const Icon(Icons.search),
+          ),
+          searchBackgroundColor: Colors.white,
+          searchCursorColor: Colors.black,
+          searchHintText: 'Rechercher un aliment',
+          backgroundColor: Colors.white,
+          elevation: 0.0,
+          leading: DropdownButtonHideUnderline(
+            child: DropdownButton2(
+              customButton: const Icon(
+                Icons.filter_list,
                 color: Colors.black,
-                onPressed: () {},
-              )
-            ]),
+              ),
+              items: sort.map((String s) => DropdownMenuItem<String> (
+                value: sort.indexOf(s).toString(),
+                child: Text(s, style: GoogleFonts.khand(
+                  color: Colors.black,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400,
+                  height: 1.2,
+                )),
+              )).toList(),
+              value: sortSelected.toString(),
+              onChanged: (String? value) {
+                setState(() {
+                  sortSelected = int.parse(value!);
+                });
+              },
+              dropdownStyleData: const DropdownStyleData(
+                width: 100,
+              ),
+            ),
+          ),
+        ),
         body: GridView.count(
             key: myGridViewKey,
             crossAxisCount: 3,
