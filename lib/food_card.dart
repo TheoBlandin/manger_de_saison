@@ -70,38 +70,44 @@ class _FoodCardState extends State<FoodCard> {
                     prefs: prefs,
                     changePreference: changePreference);
               }).then((value) {
+                List<String> likedFoods = widget.prefs.getStringList('likes') ?? [];
+                List<String> dislikedFoods = widget.prefs.getStringList('dislikes') ?? [];
             if (preferenceChoice != 0) {
               if (preferenceChoice == 1) {
-                List<String> likedFoods = widget.prefs.getStringList('likes') ?? [];
-                if (likedFoods.contains(food.nameGetter)) {
+                if (likedFoods.contains(food.nameGetter)) { // Already liked
                   return;
                 }
-                likedFoods.add(food.nameGetter);
+
+                likedFoods.add(food.nameGetter); // Add to liked
                 widget.prefs.setStringList('likes', likedFoods);
 
-                List<String> dislikedFoods = widget.prefs.getStringList('dislikes') ?? [];
-                dislikedFoods.remove(food.nameGetter);
-                widget.prefs.setStringList('dislikes', dislikedFoods);
+                if (dislikedFoods.contains(food.nameGetter)) { // Remove from disliked
+                  dislikedFoods.remove(food.nameGetter);
+                  widget.prefs.setStringList('dislikes', dislikedFoods);
+                }
               } else {
-                List<String> dislikedFoods = widget.prefs.getStringList('dislikes') ?? [];
-                if (dislikedFoods.contains(food.nameGetter)) {
+                if (dislikedFoods.contains(food.nameGetter)) { // Already disliked
                   return;
                 }
-                dislikedFoods.add(food.nameGetter);
+
+                dislikedFoods.add(food.nameGetter); // Add to disliked
                 widget.prefs.setStringList('dislikes', dislikedFoods);
 
-                List<String> likedFoods = widget.prefs.getStringList('likes') ?? [];
+                if (likedFoods.contains(food.nameGetter)) { // Remove from liked
+                  likedFoods.remove(food.nameGetter);
+                  widget.prefs.setStringList('likes', likedFoods);
+                }
+              }
+            } else {
+              if (dislikedFoods.contains(food.nameGetter)) { // Remove from disliked
+                dislikedFoods.remove(food.nameGetter);
+                widget.prefs.setStringList('dislikes', dislikedFoods);
+              }
+
+              if (likedFoods.contains(food.nameGetter)) { // Remove from liked
                 likedFoods.remove(food.nameGetter);
                 widget.prefs.setStringList('likes', likedFoods);
               }
-            } else {
-              List<String> likedFoods = widget.prefs.getStringList('likes') ?? [];
-              likedFoods.remove(food.nameGetter);
-              widget.prefs.setStringList('likes', likedFoods);
-
-              List<String> dislikedFoods = widget.prefs.getStringList('dislikes') ?? [];
-              dislikedFoods.remove(food.nameGetter);
-              widget.prefs.setStringList('dislikes', dislikedFoods);
             }
           });
         },

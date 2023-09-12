@@ -159,33 +159,17 @@ class _MainAppState extends State<MainApp> {
     }
 
     if (foods != []) {
-      if (searchValue == null) {
-        if (monthSelected == 12) { // "Tout" selected
-          currentFoods = foods
-              .where((food) => sortSelected == 0 || food.typeGetter == sortSelected! - 1)
-              .map((food) => FoodCard(food: food, prefs: widget.prefs))
-              .toList();
-        }
-        else {
-          currentFoods = foods
-              .where((food) => (food.monthsGetter.contains(monthSelected!)) && (sortSelected == 0 || food.typeGetter == sortSelected! - 1))
-              .map((food) => FoodCard(food: food, prefs: widget.prefs))
-              .toList();
-        }
+      if (monthSelected == 12) { // "Tout" selected
+        currentFoods = foods
+            .where((food) => (sortSelected == 0 || food.typeGetter == sortSelected! - 1) && (searchValue == null || RegExp("^${searchValue!.toLowerCase()}").hasMatch(food.nameGetter.toLowerCase())))
+            .map((food) => FoodCard(food: food, prefs: widget.prefs))
+            .toList();
       }
       else {
-        if (monthSelected == 12) { // "Tout" selected
-          currentFoods = foods
-              .where((food) => sortSelected == 0 || food.typeGetter == sortSelected! - 1 && food.nameGetter.toLowerCase().contains(searchValue!.toLowerCase()))
-              .map((food) => FoodCard(food: food, prefs: widget.prefs))
-              .toList();
-        }
-        else {
-          currentFoods = foods
-              .where((food) => (food.monthsGetter.contains(monthSelected!)) && (sortSelected == 0 || food.typeGetter == sortSelected! - 1) && food.nameGetter.toLowerCase().contains(searchValue!.toLowerCase()))
-              .map((food) => FoodCard(food: food, prefs: widget.prefs))
-              .toList();
-        }
+        currentFoods = foods
+            .where((food) => (food.monthsGetter.contains(monthSelected!)) && (sortSelected == 0 || food.typeGetter == sortSelected! - 1) &&  (searchValue == null || RegExp("^${searchValue!.toLowerCase()}").hasMatch(food.nameGetter.toLowerCase())))
+            .map((food) => FoodCard(food: food, prefs: widget.prefs))
+            .toList();
       }
       myGridViewKey = UniqueKey();
     }
@@ -201,65 +185,6 @@ class _MainAppState extends State<MainApp> {
                 : monthSelected! < 8
                     ? summer
                     : autumn,
-        // appBar: AppBar(
-        //     centerTitle: true,
-        //     backgroundColor: Colors.white,
-        //     elevation: 0.0,
-        //     leading: DropdownButtonHideUnderline(
-        //       child: DropdownButton2(
-        //         customButton: const Icon(
-        //           Icons.filter_list,
-        //           color: Colors.black,
-        //         ),
-        //         items: sort.map((String s) => DropdownMenuItem<String> (
-        //           value: sort.indexOf(s).toString(),
-        //           child: Text(s, style: GoogleFonts.khand(
-        //             color: Colors.black,
-        //             fontSize: 18,
-        //             fontWeight: FontWeight.w400,
-        //             height: 1.2,
-        //           )),
-        //         )).toList(),
-        //         value: sortSelected.toString(),
-        //         onChanged: (String? value) {
-        //           setState(() {
-        //             sortSelected = int.parse(value!);
-        //           });
-        //         },
-        //         dropdownStyleData: const DropdownStyleData(
-        //           width: 100,
-        //         ),
-        //       ),
-        //     ),
-        //     title: DropdownButtonHideUnderline(
-        //       child: DropdownButton2<String>(
-        //         items: months.map((String month) => DropdownMenuItem<String>(
-        //           value: months.indexOf(month).toString(),
-        //           child: Text(month, style: GoogleFonts.khand(
-        //             color: Colors.black,
-        //             fontSize: 18,
-        //             fontWeight: FontWeight.w400,
-        //             height: 1.2,
-        //           )),
-        //         )).toList(),
-        //         value: monthSelected.toString(),
-        //         onChanged: (String? value) {
-        //           setState(() {
-        //             monthSelected = int.parse(value!);
-        //           });
-        //         },
-        //         dropdownStyleData: const DropdownStyleData(
-        //           maxHeight: 350,
-        //         ),
-        //       ),
-        //     ),
-        //     actions: [
-        //       IconButton(
-        //         icon: const Icon(Icons.search),
-        //         color: Colors.black,
-        //         onPressed: () {},
-        //       )
-        //     ]),
         appBar: EasySearchBar(
           onSearch: (value) => setState(() { searchValue = value; }),
           title: DropdownButtonHideUnderline(
@@ -288,6 +213,8 @@ class _MainAppState extends State<MainApp> {
           searchCursorColor: Colors.black,
           searchHintText: 'Rechercher un aliment',
           backgroundColor: Colors.white,
+          searchBackIconTheme: const IconThemeData(color: Colors.black),
+          searchClearIconTheme: const IconThemeData(color: Colors.black),
           elevation: 0.0,
           leading: DropdownButtonHideUnderline(
             child: DropdownButton2(
@@ -310,9 +237,12 @@ class _MainAppState extends State<MainApp> {
                   sortSelected = int.parse(value!);
                 });
               },
-              dropdownStyleData: const DropdownStyleData(
-                width: 100,
-              ),
+              // buttonStyleData: const ButtonStyleData(
+              //   width: 100,
+              // ),
+              // dropdownStyleData: const DropdownStyleData(
+              //   width: 100,
+              // ),
             ),
           ),
         ),
