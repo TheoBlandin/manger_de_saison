@@ -7,6 +7,8 @@ import 'package:manger_de_saison/food_card.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'food.dart';
 
+Key myGridViewKey = UniqueKey();
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
@@ -94,13 +96,29 @@ class MainApp extends StatefulWidget {
 class _MainAppState extends State<MainApp> {
   int? monthSelected;
   int? sortSelected;
+  var currentFoods = <FoodCard>[];
 
-  @override
-  void initState() {
-    super.initState();
-    monthSelected = DateTime.now().month - 1;
-    sortSelected = 0;
-  }
+  final months = <String>[
+    'JANVIER',
+    'FÉVRIER',
+    'MARS',
+    'AVRIL',
+    'MAI',
+    'JUIN',
+    'JUILLET',
+    'AOÛT',
+    'SEPTEMBRE',
+    'OCTOBRE',
+    'NOVEMBRE',
+    'DÉCEMBRE',
+    'TOUT'
+  ];
+
+  final sort = <String>[
+    'TOUT',
+    'FRUITS',
+    'LÉGUMES'
+  ];
 
   var foods = <Food>[];
   // ignore: prefer_typing_uninitialized_variables
@@ -114,10 +132,17 @@ class _MainAppState extends State<MainApp> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    monthSelected = DateTime.now().month - 1;
+    sortSelected = 0;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    if (jsonParse == null)
-      // ignore: curly_braces_in_flow_control_structures
+    if (jsonParse == null) {
       readJson();
+    }
     else if (foods.isEmpty) {
       jsonParse.forEach((key, value) {
         var newFood = Food(
@@ -131,50 +156,20 @@ class _MainAppState extends State<MainApp> {
       });
     }
 
-    final months = <String>[
-      'JANVIER',
-      'FÉVRIER',
-      'MARS',
-      'AVRIL',
-      'MAI',
-      'JUIN',
-      'JUILLET',
-      'AOÛT',
-      'SEPTEMBRE',
-      'OCTOBRE',
-      'NOVEMBRE',
-      'DÉCEMBRE',
-      'TOUT'
-    ];
-
-    final sort = <String>[
-      'TOUT',
-      'FRUITS',
-      'LÉGUMES'
-    ];
-
-    var currentFoods = <FoodCard>[];
-    if (foods == []) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
-    }
-    else {
-      setState(() {
-        currentFoods = []; // reset
-        if (monthSelected == 12) { // "All" selected
-          currentFoods = foods
-              .where((food) => sortSelected == 0 || food.typeGetter == sortSelected! - 1)
-              .map((food) => FoodCard(food: food, prefs: widget.prefs))
-              .toList();
-        }
-        else {
-          currentFoods = foods
-              .where((food) => (food.monthsGetter.contains(monthSelected!)) && (sortSelected == 0 || food.typeGetter == sortSelected! - 1))
-              .map((food) => FoodCard(food: food, prefs: widget.prefs))
-              .toList();
-        }
-      });
+    if (foods != []) {
+      if (monthSelected == 12) { // "Tout" selected
+        currentFoods = foods
+            .where((food) => sortSelected == 0 || food.typeGetter == sortSelected! - 1)
+            .map((food) => FoodCard(food: food, prefs: widget.prefs))
+            .toList();
+      }
+      else {
+        currentFoods = foods
+            .where((food) => (food.monthsGetter.contains(monthSelected!)) && (sortSelected == 0 || food.typeGetter == sortSelected! - 1))
+            .map((food) => FoodCard(food: food, prefs: widget.prefs))
+            .toList();
+      }
+      myGridViewKey = UniqueKey();
     }
 
     return MaterialApp(
@@ -248,6 +243,7 @@ class _MainAppState extends State<MainApp> {
               )
             ]),
         body: GridView.count(
+            key: myGridViewKey,
             crossAxisCount: 3,
             crossAxisSpacing: 7,
             mainAxisSpacing: 7,
@@ -255,7 +251,20 @@ class _MainAppState extends State<MainApp> {
             padding: const EdgeInsets.all(7),
             children: currentFoods,
         )
-      ),
+        // body: GridView.builder(
+        //   itemCount: currentFoods.length,
+        //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        //     crossAxisCount: 3,
+        //     crossAxisSpacing: 7,
+        //     mainAxisSpacing: 7,
+        //     childAspectRatio: 0.85,
+        //   ),
+        //   padding: const EdgeInsets.all(7),
+        //   itemBuilder: (BuildContext context, int index) {
+        //     return currentFoods[index];
+        //   }
+        // )
+      )
     );
   }
 }

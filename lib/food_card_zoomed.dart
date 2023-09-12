@@ -11,9 +11,9 @@ import 'main.dart';
 class FoodCardZoomed extends StatefulWidget {
   final Food food;
   final SharedPreferences prefs;
-  final void Function(int) onChanged;
+  final Function(bool) changePreference;
 
-  const FoodCardZoomed({super.key, required this.food, required this.prefs, required this.onChanged});
+  const FoodCardZoomed({super.key, required this.food, required this.prefs, required this.changePreference});
 
   @override
   _FoodCardZoomedState createState() => _FoodCardZoomedState();
@@ -91,35 +91,6 @@ class _FoodCardZoomedState extends State<FoodCardZoomed> {
                       ),
                       IconButton(
                         onPressed: () {
-                          if (preferenceChoice != 0) {
-                            if (preferenceChoice == 1) {
-                              List<String> likedFoods = widget.prefs.getStringList('likes') ?? [];
-                              likedFoods.add(food.nameGetter);
-                              widget.prefs.setStringList('likes', likedFoods);
-
-                              List<String> dislikedFoods = widget.prefs.getStringList('dislikes') ?? [];
-                              dislikedFoods.remove(food.nameGetter);
-                              widget.prefs.setStringList('dislikes', dislikedFoods);
-                            }
-                            else {
-                              List<String> dislikedFoods = widget.prefs.getStringList('dislikes') ?? [];
-                              dislikedFoods.add(food.nameGetter);
-                              widget.prefs.setStringList('dislikes', dislikedFoods);
-
-                              List<String> likedFoods = widget.prefs.getStringList('likes') ?? [];
-                              likedFoods.remove(food.nameGetter);
-                              widget.prefs.setStringList('likes', likedFoods);
-                            }
-                          }
-                          else {
-                            List<String> likedFoods = widget.prefs.getStringList('likes') ?? [];
-                            likedFoods.remove(food.nameGetter);
-                            widget.prefs.setStringList('likes', likedFoods);
-
-                            List<String> dislikedFoods = widget.prefs.getStringList('dislikes') ?? [];
-                            dislikedFoods.remove(food.nameGetter);
-                            widget.prefs.setStringList('dislikes', dislikedFoods);
-                          }
                           Navigator.of(context).pop();
                         },
                         icon: const Icon(
@@ -181,7 +152,7 @@ class _FoodCardZoomedState extends State<FoodCardZoomed> {
                               preferenceChoice = 1;
                             });
                           }
-                          widget.onChanged(1);
+                          widget.changePreference(true);
                         },
                       ),
                       PreferenceButton(
@@ -202,7 +173,7 @@ class _FoodCardZoomedState extends State<FoodCardZoomed> {
                               preferenceChoice = 2;
                             });
                           }
-                          widget.onChanged(2);
+                          widget.changePreference(false);
                         },
                       )
                     ]
