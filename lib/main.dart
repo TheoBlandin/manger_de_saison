@@ -198,6 +198,9 @@ class _MainAppState extends State<MainApp> {
                   height: 1.2,
                 )),
               )).toList(),
+              buttonStyleData: const ButtonStyleData(
+                width: 100,
+              ),
               value: monthSelected.toString(),
               onChanged: (String? value) {
                 setState(() {
@@ -237,12 +240,9 @@ class _MainAppState extends State<MainApp> {
                   sortSelected = int.parse(value!);
                 });
               },
-              // buttonStyleData: const ButtonStyleData(
-              //   width: 100,
-              // ),
-              // dropdownStyleData: const DropdownStyleData(
-              //   width: 100,
-              // ),
+              dropdownStyleData: const DropdownStyleData(
+                width: 100,
+              ),
             ),
           ),
         ),

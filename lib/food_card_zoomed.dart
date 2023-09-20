@@ -80,11 +80,11 @@ class _FoodCardZoomedState extends State<FoodCardZoomed> {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(food.typeGetter == 0 ? 'F' : 'L',
+                      Text(food.typeGetter == 0 ? 'Fruit' : 'Légume',
                           style: TextStyle(
                             color: food.typeGetter == 0 ? fruit : vegetable,
                             fontSize: 25,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w500,
                             height: 1.2,
                           )
                       ),
