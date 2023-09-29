@@ -135,11 +135,7 @@ class _FoodCardZoomedState extends State<FoodCardZoomed> {
                     children: [
                       PreferenceButton(
                         text: "J'aime",
-                        icon: const Icon(
-                          Icons.favorite,
-                          color: fullHeart,
-                          size: 45
-                        ),
+                        likeIcon: true,
                         state: preferenceChoice == 1,
                         onChanged: () {
                           if (preferenceChoice == 1) {
@@ -156,11 +152,7 @@ class _FoodCardZoomedState extends State<FoodCardZoomed> {
                       ),
                       PreferenceButton(
                         text: "Je n'aime pas",
-                        icon: const Icon(
-                          Icons.heart_broken,
-                          color: brokenHeart,
-                          size: 45
-                        ),
+                        likeIcon: false,
                         state: preferenceChoice == 2,
                         onChanged: () {
                           if (preferenceChoice == 2) {

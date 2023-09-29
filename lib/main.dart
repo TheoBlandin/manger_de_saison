@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:manger_de_saison/food_card.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'filter_overlay.dart';
 import 'food.dart';
 
 Key myGridViewKey = UniqueKey();
@@ -17,13 +18,19 @@ void main() async {
   prefs.getStringList("likes") ?? prefs.setStringList("likes", []);
   prefs.getStringList("dislikes") ?? prefs.setStringList("dislikes", []);
 
-  runApp(MainApp(prefs: prefs));
+  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: MainApp(prefs: prefs) ));
 
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent, // transparent status bar
   ));
 }
 
+const MaterialColor primary = MaterialColor(
+  0xFF66B768,
+  <int, Color> {
+    100: Color(0xFF66B768),
+  },
+);
 const MaterialColor winter = MaterialColor(
   0xFF99B2D6,
   <int, Color>{
@@ -46,6 +53,12 @@ const MaterialColor autumn = MaterialColor(
   0xFFF2C37D,
   <int, Color>{
     100: Color(0xFFF2C37D),
+  },
+);
+const MaterialColor all = MaterialColor(
+  0xFF9C9C9C,
+  <int, Color>{
+    100: Color(0xFF9C9C9C),
   },
 );
 const MaterialColor vegetable = MaterialColor(
@@ -97,6 +110,7 @@ class MainApp extends StatefulWidget {
 class _MainAppState extends State<MainApp> {
   int? monthSelected;
   int? sortSelected;
+  int? prefSelected;
   String? searchValue;
   var currentFoods = <FoodCard>[];
 
@@ -116,12 +130,6 @@ class _MainAppState extends State<MainApp> {
     'TOUT'
   ];
 
-  final sort = <String>[
-    'TOUT',
-    'FRUITS',
-    'LÉGUMES'
-  ];
-
   var foods = <Food>[];
   // ignore: prefer_typing_uninitialized_variables
   var jsonParse;
@@ -138,6 +146,7 @@ class _MainAppState extends State<MainApp> {
     super.initState();
     monthSelected = DateTime.now().month - 1;
     sortSelected = 0;
+    prefSelected = 0;
   }
 
   @override
@@ -161,13 +170,13 @@ class _MainAppState extends State<MainApp> {
     if (foods != []) {
       if (monthSelected == 12) { // "Tout" selected
         currentFoods = foods
-            .where((food) => (sortSelected == 0 || food.typeGetter == sortSelected! - 1) && (searchValue == null || RegExp("^${searchValue!.toLowerCase()}").hasMatch(food.nameGetter.toLowerCase())))
+            .where((food) => (sortSelected == 0 || food.typeGetter == sortSelected! - 1) && (prefSelected == 0 || (prefSelected == 1 ? widget.prefs.getStringList("likes")!.contains(food.nameGetter) : widget.prefs.getStringList("dislikes")!.contains(food.nameGetter))) && (searchValue == null || RegExp("^${searchValue!.toLowerCase()}").hasMatch(food.nameGetter.toLowerCase())))
             .map((food) => FoodCard(food: food, prefs: widget.prefs))
             .toList();
       }
       else {
         currentFoods = foods
-            .where((food) => (food.monthsGetter.contains(monthSelected!)) && (sortSelected == 0 || food.typeGetter == sortSelected! - 1) &&  (searchValue == null || RegExp("^${searchValue!.toLowerCase()}").hasMatch(food.nameGetter.toLowerCase())))
+            .where((food) => (food.monthsGetter.contains(monthSelected!)) && (sortSelected == 0 || food.typeGetter == sortSelected! - 1) && (prefSelected == 0 || (prefSelected == 1 ? widget.prefs.getStringList("likes")!.contains(food.nameGetter) : widget.prefs.getStringList("dislikes")!.contains(food.nameGetter))) && (searchValue == null || RegExp("^${searchValue!.toLowerCase()}").hasMatch(food.nameGetter.toLowerCase())))
             .map((food) => FoodCard(food: food, prefs: widget.prefs))
             .toList();
       }
@@ -176,22 +185,23 @@ class _MainAppState extends State<MainApp> {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: 'Khand'),
+      theme: ThemeData(fontFamily: GoogleFonts.abel().fontFamily),
       home: Scaffold(
-        backgroundColor: monthSelected! < 2 || monthSelected! > 10
+        backgroundColor: monthSelected == 12 ? all :
+          monthSelected! < 2 || monthSelected! > 10
             ? winter
             : monthSelected! < 5
-                ? spring
-                : monthSelected! < 8
-                    ? summer
-                    : autumn,
+              ? spring
+              : monthSelected! < 8
+                ? summer
+                : autumn,
         appBar: EasySearchBar(
           onSearch: (value) => setState(() { searchValue = value; }),
           title: DropdownButtonHideUnderline(
             child: DropdownButton2<String>(
               items: months.map((String month) => DropdownMenuItem<String>(
                 value: months.indexOf(month).toString(),
-                child: Text(month, style: GoogleFonts.khand(
+                child: Text(month, style: const TextStyle(
                   color: Colors.black,
                   fontSize: 18,
                   fontWeight: FontWeight.w400,
@@ -219,31 +229,26 @@ class _MainAppState extends State<MainApp> {
           searchBackIconTheme: const IconThemeData(color: Colors.black),
           searchClearIconTheme: const IconThemeData(color: Colors.black),
           elevation: 0.0,
-          leading: DropdownButtonHideUnderline(
-            child: DropdownButton2(
-              customButton: const Icon(
-                Icons.filter_list,
+          leading: Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: IconButton(
+              icon: const Icon(
+                Icons.tune,
                 color: Colors.black,
               ),
-              items: sort.map((String s) => DropdownMenuItem<String> (
-                value: sort.indexOf(s).toString(),
-                child: Text(s, style: GoogleFonts.khand(
-                  color: Colors.black,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w400,
-                  height: 1.2,
-                )),
-              )).toList(),
-              value: sortSelected.toString(),
-              onChanged: (String? value) {
-                setState(() {
-                  sortSelected = int.parse(value!);
-                });
-              },
-              dropdownStyleData: const DropdownStyleData(
-                width: 100,
-              ),
-            ),
+              onPressed: () {
+                showDialog<void>(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return FiltersOverlay(
+                        sortSelected: sortSelected!,
+                        prefSelected: prefSelected!,
+                        onSelected: (int n, int m) => setState(() { sortSelected = n; prefSelected = m; }),
+                      );
+                    },
+                );
+              }
+            )
           ),
         ),
         body: GridView.count(
@@ -255,19 +260,6 @@ class _MainAppState extends State<MainApp> {
             padding: const EdgeInsets.all(7),
             children: currentFoods,
         )
-        // body: GridView.builder(
-        //   itemCount: currentFoods.length,
-        //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        //     crossAxisCount: 3,
-        //     crossAxisSpacing: 7,
-        //     mainAxisSpacing: 7,
-        //     childAspectRatio: 0.85,
-        //   ),
-        //   padding: const EdgeInsets.all(7),
-        //   itemBuilder: (BuildContext context, int index) {
-        //     return currentFoods[index];
-        //   }
-        // )
       )
     );
   }

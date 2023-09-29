@@ -30,19 +30,6 @@ flutter_native_splash:
 
 flutter:
   uses-material-design: true
-  fonts: 
-    - family: Khand
-      fonts:
-        - asset: assets/font/Khand-Light.ttf
-          weight: 300
-        - asset: assets/font/Khand-Regular.ttf
-          weight: 400
-        - asset: assets/font/Khand-Medium.ttf
-          weight: 500
-        - asset: assets/font/Khand-SemiBold.ttf
-          weight: 600
-        - asset: assets/font/Khand-Bold.ttf
-          weight: 700
   assets: 
     - assets/pics/
     - assets/calendar.json

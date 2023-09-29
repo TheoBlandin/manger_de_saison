@@ -156,8 +156,8 @@ class _FoodCardState extends State<FoodCard> {
                     ),
                     SvgPicture.asset(
                       food.imageGetter,
-                      height: 50,
-                      width: 50,
+                      height: 55,
+                      width: 55,
                     ),
                     Text(
                       food.nameGetter,
