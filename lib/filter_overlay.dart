@@ -3,6 +3,7 @@ import 'main.dart';
 
 import 'dropdown_filter.dart';
 
+// ignore: must_be_immutable
 class FiltersOverlay extends StatefulWidget {
   final Function(int, int) onSelected;
   int sortSelected;

@@ -176,7 +176,7 @@ class _MainAppState extends State<MainApp> {
       }
       else {
         currentFoods = foods
-            .where((food) => (food.monthsGetter.contains(monthSelected!)) && (sortSelected == 0 || food.typeGetter == sortSelected! - 1) && (prefSelected == 0 || (prefSelected == 1 ? widget.prefs.getStringList("likes")!.contains(food.nameGetter) : widget.prefs.getStringList("dislikes")!.contains(food.nameGetter))) && (searchValue == null || RegExp("^${searchValue!.toLowerCase()}").hasMatch(food.nameGetter.toLowerCase())))
+            .where((food) => (food.monthsGetter.contains(monthSelected! + 1)) && (sortSelected == 0 || food.typeGetter == sortSelected! - 1) && (prefSelected == 0 || (prefSelected == 1 ? widget.prefs.getStringList("likes")!.contains(food.nameGetter) : widget.prefs.getStringList("dislikes")!.contains(food.nameGetter))) && (searchValue == null || RegExp("^${searchValue!.toLowerCase()}").hasMatch(food.nameGetter.toLowerCase())))
             .map((food) => FoodCard(food: food, prefs: widget.prefs))
             .toList();
       }

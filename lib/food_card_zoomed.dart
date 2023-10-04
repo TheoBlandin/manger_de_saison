@@ -45,10 +45,10 @@ class _FoodCardZoomedState extends State<FoodCardZoomed> {
     List<CheckboxIndicator> monthsRow2 = [];
 
     for (var i = 0; i < 6; i++) {
-      monthsRow1.add(CheckboxIndicator(food.monthsGetter.contains(i), nameMonths[i]));
+      monthsRow1.add(CheckboxIndicator(food.monthsGetter.contains(i+1), nameMonths[i]));
     }
     for (var i = 6; i < 12; i++) {
-      monthsRow2.add(CheckboxIndicator(food.monthsGetter.contains(i), nameMonths[i]));
+      monthsRow2.add(CheckboxIndicator(food.monthsGetter.contains(i+1), nameMonths[i]));
     }
 
     return Material(
@@ -140,10 +140,12 @@ class _FoodCardZoomedState extends State<FoodCardZoomed> {
                         onChanged: () {
                           if (preferenceChoice == 1) {
                             setState(() {
+                              if (!mounted) return;
                               preferenceChoice = 0;
                             });
                           } else {
                             setState(() {
+                              if (!mounted) return;
                               preferenceChoice = 1;
                             });
                           }
@@ -157,10 +159,12 @@ class _FoodCardZoomedState extends State<FoodCardZoomed> {
                         onChanged: () {
                           if (preferenceChoice == 2) {
                             setState(() {
+                              if (!mounted) return;
                               preferenceChoice = 0;
                             });
                           } else {
                             setState(() {
+                              if (!mounted) return;
                               preferenceChoice = 2;
                             });
                           }
