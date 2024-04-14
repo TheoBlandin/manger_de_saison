@@ -2,95 +2,30 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="140mm"
-   height="58.995667mm"
-   viewBox="0 0 140 58.995667"
+   width="64"
+   height="64"
+   viewBox="0 0 16.933332 16.933333"
    version="1.1"
    id="svg5"
-   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
-   sodipodi:docname="watermelon.svg"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
-     id="namedview7"
-     pagecolor="#ffffff"
-     bordercolor="#000000"
-     borderopacity="0.25"
-     inkscape:pageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
-     inkscape:document-units="mm"
-     showgrid="false"
-     inkscape:zoom="0.7198092"
-     inkscape:cx="16.671085"
-     inkscape:cy="191.02284"
-     inkscape:window-width="1920"
-     inkscape:window-height="1001"
-     inkscape:window-x="-9"
-     inkscape:window-y="-9"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="layer1"
-     fit-margin-top="0"
-     fit-margin-left="0"
-     fit-margin-right="0"
-     fit-margin-bottom="0" />
   <defs
-     id="defs2">
-    <inkscape:path-effect
-       effect="skeletal"
-       id="path-effect1757"
-       is_visible="true"
-       lpeversion="1"
-       pattern="M 0,0 H 1"
-       copytype="repeated"
-       prop_scale="1"
-       scale_y_rel="false"
-       spacing="0"
-       normal_offset="0"
-       tang_offset="0"
-       prop_units="false"
-       vertical_pattern="false"
-       hide_knot="false"
-       fuse_tolerance="0" />
-  </defs>
+     id="defs2" />
   <g
-     inkscape:label="Calque 1"
-     inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-46.004333,-123.41306)">
+     transform="translate(-57.008666,-123.41306)">
     <g
        id="g949"
-       transform="translate(11.004333)">
+       transform="matrix(0.14351337,0,0,0.14351337,50.406429,109.93497)">
       <path
          style="fill:#4ba563;fill-opacity:1;stroke-width:3.96875;stroke-linecap:round;stroke-linejoin:round"
          id="path846-4"
-         sodipodi:type="arc"
-         sodipodi:cx="105"
-         sodipodi:cy="123.41306"
-         sodipodi:rx="58.995667"
-         sodipodi:ry="58.995667"
-         sodipodi:start="0"
-         sodipodi:end="3.1415927"
-         sodipodi:open="true"
-         sodipodi:arc-type="arc"
          d="m 163.99567,123.41306 a 58.995667,58.995667 0 0 1 -29.49784,51.09175 58.995667,58.995667 0 0 1 -58.995665,0 58.995667,58.995667 0 0 1 -29.497832,-51.09175" />
       <path
          style="fill:#d31925;fill-opacity:1;stroke-width:3.96875;stroke-linecap:round;stroke-linejoin:round"
          id="path846"
-         sodipodi:type="arc"
-         sodipodi:cx="105"
-         sodipodi:cy="123.41306"
-         sodipodi:rx="53.114479"
-         sodipodi:ry="53.114479"
-         sodipodi:start="0"
-         sodipodi:end="3.1415927"
-         sodipodi:open="true"
-         sodipodi:arc-type="arc"
          d="m 158.11448,123.41306 a 53.114479,53.114479 0 0 1 -26.55724,45.99849 53.114479,53.114479 0 0 1 -53.114481,0 53.114479,53.114479 0 0 1 -26.557238,-45.99849" />
       <g
-         inkscape:label="Calque 1"
          id="layer1-1"
          transform="translate(57.744086,-124.7041)"
          style="fill:#000000;fill-opacity:1">
@@ -101,7 +36,6 @@
            transform="matrix(0.26458333,0,0,0.26458333,-57.744084,126.82078)" />
       </g>
       <g
-         inkscape:label="Calque 1"
          id="layer1-1-5"
          transform="rotate(-75,-8.2876372,147.15616)"
          style="fill:#000000;fill-opacity:1">
@@ -112,7 +46,6 @@
            transform="matrix(0.26458333,0,0,0.26458333,-57.744084,126.82078)" />
       </g>
       <g
-         inkscape:label="Calque 1"
          id="layer1-1-5-2"
          transform="matrix(-0.25881905,-0.96592583,-0.96592583,0.25881905,358.30946,101.06425)"
          style="fill:#000000;fill-opacity:1">
@@ -123,7 +56,6 @@
            transform="matrix(0.26458333,0,0,0.26458333,-57.744084,126.82078)" />
       </g>
       <g
-         inkscape:label="Calque 1"
          id="layer1-1-5-8"
          transform="rotate(-60,-34.00796,135.19779)"
          style="fill:#000000;fill-opacity:1">
@@ -134,7 +66,6 @@
            transform="matrix(0.26458333,0,0,0.26458333,-57.744084,126.82078)" />
       </g>
       <g
-         inkscape:label="Calque 1"
          id="layer1-1-5-8-9"
          transform="matrix(-0.5,-0.8660254,-0.8660254,0.5,344.05956,38.147403)"
          style="fill:#000000;fill-opacity:1">
@@ -145,7 +76,6 @@
            transform="matrix(0.26458333,0,0,0.26458333,-57.744084,126.82078)" />
       </g>
       <g
-         inkscape:label="Calque 1"
          id="layer1-1-5-8-2"
          transform="rotate(-45,-74.564539,118.21452)"
          style="fill:#000000;fill-opacity:1">
@@ -156,7 +86,6 @@
            transform="matrix(0.26458333,0,0,0.26458333,-57.744084,126.82078)" />
       </g>
       <g
-         inkscape:label="Calque 1"
          id="layer1-1-5-8-2-0"
          transform="matrix(-0.70710678,-0.70710678,-0.70710678,0.70710678,315.51428,-18.100488)"
          style="fill:#000000;fill-opacity:1">
@@ -167,7 +96,6 @@
            transform="matrix(0.26458333,0,0,0.26458333,-57.744084,126.82078)" />
       </g>
       <g
-         inkscape:label="Calque 1"
          id="layer1-1-5-8-2-3"
          transform="rotate(-30,-154.84376,88.798972)"
          style="fill:#000000;fill-opacity:1">
@@ -178,7 +106,6 @@
            transform="matrix(0.26458333,0,0,0.26458333,-57.744084,126.82078)" />
       </g>
       <g
-         inkscape:label="Calque 1"
          id="layer1-1-5-8-2-3-0"
          transform="matrix(-0.8660254,-0.5,-0.5,0.8660254,275.10677,-65.524629)"
          style="fill:#000000;fill-opacity:1">

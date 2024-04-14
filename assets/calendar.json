@@ -1,7 +1,8 @@
 {
   "Abricot": {
     "season": [6, 7, 9],
-    "type": 0
+    "type": 0,
+    "pic": "assets/pics/apricot.svg"
   },
   "Ail": {
     "season": [7, 8, 9, 10, 11, 12],
@@ -10,7 +11,8 @@
   },
   "Amande": {
     "season": [6, 9],
-    "type": 0
+    "type": 0,
+    "pic": "assets/pics/almond.svg"
   },
   "Ananas": {
     "season": [11, 12, 1, 2, 3],
@@ -153,10 +155,6 @@
     "season": [5, 6, 7, 8, 9, 10],
     "type": 1
   },
-  "Cresson": {
-    "season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-    "type": 1
-  },
   "Échalote": {
     "season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "type": 1
@@ -294,10 +292,6 @@
     "season": [1, 2, 3, 4, 9, 10, 11, 12],
     "type": 1
   },
-  "Oignon Nouveau": {
-    "season": [4, 5, 6, 7],
-    "type": 1
-  },
   "Orange": {
     "season": [1, 2, 3],
     "type": 0,
@@ -307,10 +301,6 @@
     "season": [1, 2, 3],
     "type": 0,
     "pic": "assets/pics/orange.svg"
-  },
-  "Oseille": {
-    "season": [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    "type": 1
   },
   "Pamplemousse": {
     "season": [2, 3, 4, 5, 6],
@@ -397,7 +387,8 @@
   },
   "Radis": {
     "season": [3, 4, 5, 6],
-    "type": 1
+    "type": 1,
+    "pic": "assets/pics/radish.svg"
   },
   "Raisin": {
     "season": [9, 10],

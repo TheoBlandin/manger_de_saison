@@ -2,49 +2,21 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="72.54142mm"
-   height="79.452393mm"
-   viewBox="0 0 72.54142 79.452393"
+   width="64"
+   height="64"
+   viewBox="0 0 16.933333 16.933333"
    version="1.1"
    id="svg5"
-   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
-   sodipodi:docname="orange.svg"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
-     id="namedview7"
-     pagecolor="#ffffff"
-     bordercolor="#000000"
-     borderopacity="0.25"
-     inkscape:pageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
-     inkscape:document-units="mm"
-     showgrid="false"
-     fit-margin-top="0"
-     fit-margin-left="0"
-     fit-margin-right="0"
-     fit-margin-bottom="0"
-     inkscape:zoom="0.7198092"
-     inkscape:cx="286.18695"
-     inkscape:cy="122.94925"
-     inkscape:window-width="1920"
-     inkscape:window-height="1001"
-     inkscape:window-x="-9"
-     inkscape:window-y="-9"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
   <defs
      id="defs2" />
   <g
-     inkscape:label="Calque 1"
-     inkscape:groupmode="layer"
      id="layer1"
      transform="translate(-54.033421,-71.38235)">
     <g
-       id="g5935">
+       id="g5935"
+       transform="matrix(0.21312553,0,0,0.21312553,43.253972,56.168949)">
       <circle
          style="fill:#fb9f06;fill-opacity:1;stroke:none;stroke-width:0.675207;stroke-linecap:round;stroke-linejoin:round"
          id="path846"
@@ -52,10 +24,9 @@
          cy="114.56403"
          r="36.27071" />
       <path
-         style="fill:none;fill-opacity:1;stroke:#956437;stroke-width:3.96875;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         style="fill:none;fill-opacity:1;stroke:#956437;stroke-width:3.72433084;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="M 79.602123,90.412119 C 77.501729,85.401702 73.806733,80.837168 67.008086,76.819191"
-         id="path925"
-         sodipodi:nodetypes="cc" />
+         id="path925" />
       <ellipse
          style="fill:#956437;fill-opacity:1;stroke:none;stroke-width:8.46764;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="path1296"
@@ -65,10 +36,9 @@
          ry="2.9772995"
          transform="matrix(0.91190667,-0.41039764,0.2963747,0.95507174,0,0)" />
       <path
-         style="fill:#80b92b;fill-opacity:1;stroke:none;stroke-width:4.42328;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         style="fill:#2c9910;fill-opacity:1;stroke:none;stroke-width:4.42328;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="M 74.034627,80.695793 C 75.242179,71.836192 89.476255,67.910683 103.05727,75.152427 95.35897,82.65464 84.093453,86.789843 74.815563,82.628924 73.860465,82.203571 73.913649,81.37847 74.034627,80.695793 Z"
-         id="path3943"
-         sodipodi:nodetypes="cccc" />
+         id="path3943" />
     </g>
   </g>
 </svg>

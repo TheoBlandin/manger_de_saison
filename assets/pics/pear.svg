@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="61.66576mm"
-   height="95.192055mm"
-   viewBox="0 0 61.66576 95.192054"
+   width="64"
+   height="64"
+   viewBox="0 0 16.933333 16.933333"
    version="1.1"
    id="svg5"
    xmlns="http://www.w3.org/2000/svg"
@@ -13,14 +13,18 @@
      id="defs2" />
   <g
      id="layer1"
-     transform="translate(-73.866745,-74.941136)">
-    <path
-       style="opacity:1;fill:none;fill-opacity:1;stroke:#956437;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 99.708459,77.441136 C 102.82142,79.537013 104.93502,87.317768 105,91.342202"
-       id="path3698" />
-    <path
-       style="opacity:1;fill:#bcca05;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
-       d="m 105,91.342202 c -19.457001,0 -18.994257,23.960708 -27.479762,38.658018 -11.501551,19.92127 5.936193,40.21361 27.479762,40.13273 21.54357,-0.0809 39.08657,-17.60226 26.07824,-40.13336 C 122.51063,115.16006 124.457,91.342202 105,91.342202 Z"
-       id="path1031" />
+     transform="matrix(0.17788599,0,0,0.17788599,-10.15793,-13.330978)">
+    <g
+       id="g2188"
+       transform="translate(0,-1.1947773)">
+      <path
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#956437;stroke-width:4.57702;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 100.90924,78.424423 c 3.07227,2.995762 4.03184,7.955725 4.09849,12.083783"
+         id="path3698" />
+      <path
+         style="opacity:1;fill:#bcca05;fill-opacity:1;stroke:none;stroke-width:1.02575;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+         d="m 105.00773,90.508206 c -19.957991,0 -19.483331,24.577664 -28.187328,39.653414 -11.797702,20.43422 6.089043,41.24906 28.187328,41.1661 22.09829,-0.083 40.09301,-18.0555 26.74973,-41.16675 -8.78822,-15.22163 -6.79173,-39.652764 -26.74973,-39.652764 z"
+         id="path1031" />
+    </g>
   </g>
 </svg>
