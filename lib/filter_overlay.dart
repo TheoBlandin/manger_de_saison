@@ -12,6 +12,7 @@ class FiltersOverlay extends StatefulWidget {
   FiltersOverlay({Key? key, required this.onSelected, required this.sortSelected, required this.prefSelected}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _FiltersOverlayState createState() => _FiltersOverlayState();
 }
 

@@ -39,7 +39,7 @@ class _FoodCardZoomedState extends State<FoodCardZoomed> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> nameMonths = ["JAN", "FEV", "MAR", "AVR", "MAI", "JUI", "JUI", "AOU", "SEP", "OCT", "NOV", "DEC"];
+    List<String> nameMonths = ["jan", "fev", "mar", "avr", "mai", "jui", "jui", "aoû", "sep", "oct", "nov", "dec"];
 
     List<CheckboxIndicator> monthsRow1 = [];
     List<CheckboxIndicator> monthsRow2 = [];

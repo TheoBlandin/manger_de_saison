@@ -115,19 +115,19 @@ class _MainAppState extends State<MainApp> {
   var currentFoods = <FoodCard>[];
 
   final months = <String>[
-    'JANVIER',
-    'FÉVRIER',
-    'MARS',
-    'AVRIL',
-    'MAI',
-    'JUIN',
-    'JUILLET',
-    'AOÛT',
-    'SEPTEMBRE',
-    'OCTOBRE',
-    'NOVEMBRE',
-    'DÉCEMBRE',
-    'TOUT'
+    'Tout',
+    'Janvier',
+    'Février',
+    'Mars',
+    'Avril',
+    'Mai',
+    'Juin',
+    'Juillet',
+    'Août',
+    'Septembre',
+    'Octobre',
+    'Novembre',
+    'Décembre'
   ];
 
   var foods = <Food>[];
@@ -144,7 +144,7 @@ class _MainAppState extends State<MainApp> {
   @override
   void initState() {
     super.initState();
-    monthSelected = DateTime.now().month - 1;
+    monthSelected = DateTime.now().month;
     sortSelected = 0;
     prefSelected = 0;
   }
@@ -168,7 +168,7 @@ class _MainAppState extends State<MainApp> {
     }
 
     if (foods != []) {
-      if (monthSelected == 12) { // "Tout" selected
+      if (monthSelected == 0) { // "Tout" selected
         currentFoods = foods
             .where((food) => (sortSelected == 0 || food.typeGetter == sortSelected! - 1) && (prefSelected == 0 || (prefSelected == 1 ? widget.prefs.getStringList("likes")!.contains(food.nameGetter) : widget.prefs.getStringList("dislikes")!.contains(food.nameGetter))) && (searchValue == null || RegExp("^${searchValue!.toLowerCase()}").hasMatch(food.nameGetter.toLowerCase())))
             .map((food) => FoodCard(food: food, prefs: widget.prefs))
@@ -176,7 +176,7 @@ class _MainAppState extends State<MainApp> {
       }
       else {
         currentFoods = foods
-            .where((food) => (food.monthsGetter.contains(monthSelected! + 1)) && (sortSelected == 0 || food.typeGetter == sortSelected! - 1) && (prefSelected == 0 || (prefSelected == 1 ? widget.prefs.getStringList("likes")!.contains(food.nameGetter) : widget.prefs.getStringList("dislikes")!.contains(food.nameGetter))) && (searchValue == null || RegExp("^${searchValue!.toLowerCase()}").hasMatch(food.nameGetter.toLowerCase())))
+            .where((food) => (food.monthsGetter.contains(monthSelected!)) && (sortSelected == 0 || food.typeGetter == sortSelected! - 1) && (prefSelected == 0 || (prefSelected == 1 ? widget.prefs.getStringList("likes")!.contains(food.nameGetter) : widget.prefs.getStringList("dislikes")!.contains(food.nameGetter))) && (searchValue == null || RegExp("^${searchValue!.toLowerCase()}").hasMatch(food.nameGetter.toLowerCase())))
             .map((food) => FoodCard(food: food, prefs: widget.prefs))
             .toList();
       }
@@ -185,14 +185,14 @@ class _MainAppState extends State<MainApp> {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: GoogleFonts.abel().fontFamily),
+      theme: ThemeData(fontFamily: GoogleFonts.dosis().fontFamily),
       home: Scaffold(
-        backgroundColor: monthSelected == 12 ? all :
-          monthSelected! < 2 || monthSelected! > 10
+        backgroundColor: monthSelected == 0 ? all :
+          monthSelected! <= 2 || monthSelected! == 12
             ? winter
-            : monthSelected! < 5
+            : monthSelected! <= 5
               ? spring
-              : monthSelected! < 8
+              : monthSelected! <= 8
                 ? summer
                 : autumn,
         appBar: EasySearchBar(

@@ -5,7 +5,7 @@
     "pic": "assets/pics/apricot.svg"
   },
   "Ail": {
-    "season": [7, 8, 9, 10, 11, 12],
+    "season": [1, 7, 8, 9, 10, 11, 12],
     "type": 1,
     "pic": "assets/pics/garlic.svg"
   },
@@ -90,11 +90,6 @@
     "type": 0,
     "pic": "assets/pics/cherries.svg"
   },
-  "Champignon de Paris": {
-    "season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-    "type": 1,
-    "pic": "assets/pics/mushroom.svg"
-  },
   "Châtaigne": {
     "season": [9, 10, 11],
     "type": 0,
@@ -104,23 +99,23 @@
     "season": [1, 2, 3, 10, 11, 12],
     "type": 1
   },
-  "Chou de Bruxelles": {
+  "Chou de bruxelles": {
     "season": [1, 2, 3, 10, 11, 12],
     "type": 1
   },
-  "Chou Chinois": {
+  "Chou chinois": {
     "season": [10, 11, 12],
     "type": 1
   },
-  "Chou-Fleur": {
+  "Chou-fleur": {
     "season": [1, 2, 3, 9, 10, 11, 12],
     "type": 1
   },
-  "Chou Kale": {
+  "Chou kale": {
     "season": [1, 2, 3, 10, 11, 12],
     "type": 1
   },
-  "Chou Rouge": {
+  "Chou rouge": {
     "season": [4, 5, 6, 7, 8, 9],
     "type": 1
   },
@@ -155,10 +150,6 @@
     "season": [5, 6, 7, 8, 9, 10],
     "type": 1
   },
-  "Échalote": {
-    "season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-    "type": 1
-  },
   "Endive": {
     "season": [1, 2, 3, 4, 5, 10],
     "type": 1
@@ -188,7 +179,7 @@
     "season": [6, 7, 8],
     "type": 0
   },
-  "Fruit de la Passion": {
+  "Fruit de la passion": {
     "season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "type": 0
   },
@@ -208,7 +199,7 @@
     "season": [6, 7, 8],
     "type": 0
   },
-  "Haricot Vert": {
+  "Haricot vert": {
     "season": [6, 7, 8, 9, 10],
     "type": 1
   },
@@ -283,7 +274,7 @@
     "season": [9, 10, 11],
     "type": 0
   },
-  "Noix de Coco": {
+  "Noix de coco": {
     "season": [1, 2, 11, 12],
     "type": 0,
     "pic": "assets/pics/coconut.svg"
@@ -297,7 +288,7 @@
     "type": 0,
     "pic": "assets/pics/orange.svg"
   },
-  "Orange Sanguine": {
+  "Orange sanguine": {
     "season": [1, 2, 3],
     "type": 0,
     "pic": "assets/pics/orange.svg"
@@ -319,7 +310,7 @@
     "type": 0,
     "pic": "assets/pics/watermelon.svg"
   },
-  "Patate Douce": {
+  "Patate douce": {
     "season": [9, 10, 11],
     "type": 1,
     "pic": "assets/pics/sweet-potato.svg"
@@ -333,7 +324,7 @@
     "type": 0,
     "pic": "assets/pics/peach.svg"
   },
-  "Petit Pois": {
+  "Petit pois": {
     "season": [5, 6, 7],
     "type": 1
   },
@@ -351,7 +342,7 @@
     "season": [1, 2, 3, 4, 9, 10, 11, 12],
     "type": 1
   },
-  "Pois Gourmand": {
+  "Pois gourmand": {
     "season": [4, 5, 6],
     "type": 1
   },
@@ -401,10 +392,6 @@
   },
   "Roquette": {
     "season": [5, 6, 7, 8, 9, 10, 11],
-    "type": 1
-  },
-  "Rutabaga": {
-    "season": [10, 11, 12],
     "type": 1
   },
   "Salsifis": {
