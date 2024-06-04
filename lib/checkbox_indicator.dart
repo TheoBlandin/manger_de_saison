@@ -29,7 +29,7 @@ class CheckboxIndicator extends StatelessWidget {
               top: 4,
               child: Icon(
                 Icons.check,
-                color: Colors.black,
+                color: secondaryText,
                 size: 20,
               )
             ) : const SizedBox.shrink()

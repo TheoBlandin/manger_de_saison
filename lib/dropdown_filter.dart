@@ -1,5 +1,6 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:manger_de_saison/main.dart';
 
 class DropdownFilter extends StatelessWidget {
   final String title;
@@ -24,7 +25,7 @@ class DropdownFilter extends StatelessWidget {
           title,
           textAlign: TextAlign.left,
           style: const TextStyle(
-            color: Colors.black,
+            color: secondaryText,
             fontSize: 16,
             fontWeight: FontWeight.w400,
             height: 1.2,
@@ -35,7 +36,7 @@ class DropdownFilter extends StatelessWidget {
             items: items.map<DropdownMenuItem<String>>((String item) => DropdownMenuItem<String>(
               value: items.indexOf(item).toString(),
               child: Text(item, style: const TextStyle(
-                color: Colors.black,
+                color: text,
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
                 height: 1.2,

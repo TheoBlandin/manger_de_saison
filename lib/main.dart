@@ -26,41 +26,59 @@ void main() async {
 }
 
 const MaterialColor primary = MaterialColor(
-  0xFF66B768,
+  0xFF489949,
   <int, Color> {
-    100: Color(0xFF66B768),
+    100: Color(0xFF489949),
   },
 );
-const MaterialColor winter = MaterialColor(
-  0xFF99B2D6,
-  <int, Color>{
-    100: Color(0xFF99B2D6),
+const MaterialColor background = MaterialColor(
+  0xFFE6F1E6,
+  <int, Color> {
+    100: Color(0xFFE6F1E6),
   },
 );
-const MaterialColor spring = MaterialColor(
-  0xFFBDE38C,
-  <int, Color>{
-    100: Color(0xFFBDE38C),
+const MaterialColor text = MaterialColor(
+  0xFF010F01,
+  <int, Color> {
+    100: Color(0xFF010F01),
   },
 );
-const MaterialColor summer = MaterialColor(
-  0xFFFFFA70,
-  <int, Color>{
-    100: Color(0xFFFFFA70),
+const MaterialColor secondaryText = MaterialColor(
+  0xFF4E5A4E,
+  <int, Color> {
+    100: Color(0xFF4E5A4E),
   },
 );
-const MaterialColor autumn = MaterialColor(
-  0xFFF2C37D,
-  <int, Color>{
-    100: Color(0xFFF2C37D),
-  },
-);
-const MaterialColor all = MaterialColor(
-  0xFF9C9C9C,
-  <int, Color>{
-    100: Color(0xFF9C9C9C),
-  },
-);
+// const MaterialColor winter = MaterialColor(
+//   0xFF99B2D6,
+//   <int, Color>{
+//     100: Color(0xFF99B2D6),
+//   },
+// );
+// const MaterialColor spring = MaterialColor(
+//   0xFFBDE38C,
+//   <int, Color>{
+//     100: Color(0xFFBDE38C),
+//   },
+// );
+// const MaterialColor summer = MaterialColor(
+//   0xFFFFFA70,
+//   <int, Color>{
+//     100: Color(0xFFFFFA70),
+//   },
+// );
+// const MaterialColor autumn = MaterialColor(
+//   0xFFF2C37D,
+//   <int, Color>{
+//     100: Color(0xFFF2C37D),
+//   },
+// );
+// const MaterialColor all = MaterialColor(
+//   0xFF9C9C9C,
+//   <int, Color>{
+//     100: Color(0xFF9C9C9C),
+//   },
+// );
 const MaterialColor vegetable = MaterialColor(
   0xFF1E6C0E,
   <int, Color>{
@@ -187,14 +205,15 @@ class _MainAppState extends State<MainApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: GoogleFonts.dosis().fontFamily),
       home: Scaffold(
-        backgroundColor: monthSelected == 0 ? all :
-          monthSelected! <= 2 || monthSelected! == 12
-            ? winter
-            : monthSelected! <= 5
-              ? spring
-              : monthSelected! <= 8
-                ? summer
-                : autumn,
+        // backgroundColor: monthSelected == 0 ? all :
+        //   monthSelected! <= 2 || monthSelected! == 12
+        //     ? winter
+        //     : monthSelected! <= 5
+        //       ? spring
+        //       : monthSelected! <= 8
+        //         ? summer
+        //         : autumn,
+        backgroundColor: background,
         appBar: EasySearchBar(
           onSearch: (value) => setState(() { searchValue = value; }),
           title: DropdownButtonHideUnderline(
@@ -202,7 +221,7 @@ class _MainAppState extends State<MainApp> {
               items: months.map((String month) => DropdownMenuItem<String>(
                 value: months.indexOf(month).toString(),
                 child: Text(month, style: const TextStyle(
-                  color: Colors.black,
+                  color: text,
                   fontSize: 18,
                   fontWeight: FontWeight.w400,
                   height: 1.2,
@@ -234,7 +253,7 @@ class _MainAppState extends State<MainApp> {
             child: IconButton(
               icon: const Icon(
                 Icons.tune,
-                color: Colors.black,
+                color: text,
               ),
               onPressed: () {
                 showDialog<void>(

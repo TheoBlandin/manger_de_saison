@@ -102,7 +102,7 @@ class _FoodCardZoomedState extends State<FoodCardZoomed> {
                   Text(
                     food.nameGetter,
                     style: const TextStyle(
-                      color: Colors.black,
+                      color: text,
                       fontSize: 22,
                       fontWeight: FontWeight.w400,
                       height: 1.2
