@@ -49,6 +49,12 @@ const MaterialColor secondaryText = MaterialColor(
     100: Color(0xFF4E5A4E),
   },
 );
+const MaterialColor unselected = MaterialColor(
+  0xFF7C8D7C,
+  <int, Color> {
+    100: Color(0xFF7C8D7C),
+  },
+);
 // const MaterialColor winter = MaterialColor(
 //   0xFF99B2D6,
 //   <int, Color>{
