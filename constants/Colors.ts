@@ -4,6 +4,7 @@ export const Colors = {
     textSecondary: '#283328',
     background: '#F4F4F4',
     surface: '#FCFEFC',
+    surfaceActive: '#F0F2F0',
     grey: '#B4B4B4',
     overlay: '#0D110D59', // textDefault with opacity 35%
     fruit: '#5C0E6C',

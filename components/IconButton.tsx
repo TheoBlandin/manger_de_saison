@@ -1,4 +1,7 @@
+// Design
 import { Colors } from "@/constants/Colors";
+
+// React
 import { StyleSheet, Pressable } from "react-native";
 
 import {
@@ -10,8 +13,19 @@ import {
   ArrowLeft,
   Star,
 } from "lucide-react-native";
+import React from "react";
 
-export function IconButton({
+const ICONS_MAP: Record<string, any> = {
+  slidersVertical: SlidersVertical,
+  search: Search,
+  chevronRight: ChevronRight,
+  chevronLeft: ChevronLeft,
+  x: X,
+  arrowLeft: ArrowLeft,
+  star: Star,
+};
+
+export const IconButton = React.memo(function IconButton({
   iconName,
   label,
   onPress,
@@ -20,27 +34,28 @@ export function IconButton({
   label: string;
   onPress: () => void;
 }) {
-  const iconsMap: Record<string, any> = {
-    slidersVertical: SlidersVertical,
-    search: Search,
-    chevronRight: ChevronRight,
-    chevronLeft: ChevronLeft,
-    x: X,
-    arrowLeft: ArrowLeft,
-    star: Star
-  };
 
-  const IconComponent = iconsMap[iconName] || Star; // Star fallback
+  const IconComponent = ICONS_MAP[iconName] || Star; // Star fallback
 
   return (
-    <Pressable style={styles.button} onPress={onPress} accessibilityLabel={label}>
+    <Pressable
+      style={({ pressed }) => [styles.button, pressed && styles.buttonPressed]}
+      onPress={onPress}
+      accessibilityLabel={label}
+      hitSlop={4}
+    >
       <IconComponent size={24} color={Colors.textDefault} />
     </Pressable>
   );
-}
+});
 
 const styles = StyleSheet.create({
   button: {
     padding: 8,
+    borderRadius: 8,
+    backgroundColor: "transparent",
+  },
+  buttonPressed: {
+    backgroundColor: "rgba(13, 17, 13, 0.05)",
   },
 });

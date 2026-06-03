@@ -18,7 +18,7 @@ import { FlatList, Linking, StyleSheet, Text, View } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as NavigationBar from "expo-navigation-bar";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
-import { FlatGrid } from "react-native-super-grid";
+import { runOnJS } from 'react-native-reanimated';
 
 // Data
 import foodJson from "./../assets/food.json";
@@ -83,8 +83,8 @@ export default function Index() {
         .failOffsetY([-15, 15])
         .onEnd((e) => {
           if (modalFood || modalFilters) return;
-          if (e.translationX > 60) previousMonth();
-          if (e.translationX < -60) nextMonth();
+          if (e.translationX > 60) runOnJS(previousMonth)();
+          if (e.translationX < -60) runOnJS(nextMonth)();
         }),
     [modalFood, modalFilters, currentMonth]
   );
@@ -203,7 +203,7 @@ export default function Index() {
     const isLiked = likedSet.has(id);
     const isDisliked = dislikedSet.has(id);
 
-    let updatedLiked = [...likedFood]; // copy array
+    let updatedLiked = [...likedFood];
     let updatedDisliked = [...dislikedFood];
 
     if (preference == "like") {
@@ -290,7 +290,7 @@ export default function Index() {
         <FiltersModal
           onClose={() => setModalFilters(false)}
           currentFilterType={filterType}
-          currentPreferenceType={filterPreference}
+          currentFilterPreference={filterPreference}
           onChangeType={(type: number) => setFilterType(type)}
           onChangePreference={(preference: number) =>
             setFilterPreference(preference)

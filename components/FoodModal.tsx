@@ -1,23 +1,29 @@
+// Components
+import { IconButton } from "./IconButton";
+import { SeasonCheckbox } from "./SeasonCheckbox";
+
+// Design
 import { Colors } from "@/constants/Colors";
+import { BLargeText } from "./texts/body/BLargeText";
+import { BBodyText } from "./texts/body/BBodyText";
+
+// React
 import {
   Pressable,
   StyleSheet,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import { IconButton } from "./IconButton";
-import { BLargeText } from "./texts/body/BLargeText";
+import { useMemo } from "react";
 
+// Assets
 import DefaultFood from "./../assets/food/abricot.svg";
 import { foodImages } from "./../assets/foodImages";
-import { SeasonCheckbox } from "./SeasonCheckbox";
-
 import Like from "./../assets/icons/like.svg";
 import Dislike from "./../assets/icons/dislike.svg";
+import React from "react";
 
-import { BBodyText } from "./texts/body/BBodyText";
-
-export function FoodModal({
+export const FoodModal = React.memo(function FoodModal({
   name,
   type,
   img,
@@ -25,7 +31,7 @@ export function FoodModal({
   onClose,
   onPreference,
   isLiked,
-  isDisliked
+  isDisliked,
 }: {
   name: string;
   type: string;
@@ -34,7 +40,7 @@ export function FoodModal({
   onClose: () => void;
   onPreference: (key: string, name: string) => void;
   isLiked: boolean;
-  isDisliked: boolean
+  isDisliked: boolean;
 }) {
   const months = [
     "jan",
@@ -51,7 +57,12 @@ export function FoodModal({
     "dec",
   ];
 
-  const FoodImage = foodImages[img as keyof typeof foodImages] ?? DefaultFood;
+  const seasonSet = useMemo(() => new Set(season), [season]);
+
+  const FoodImage = useMemo(
+    () => foodImages[img as keyof typeof foodImages] ?? DefaultFood,
+    [img]
+  );
 
   return (
     <TouchableWithoutFeedback onPress={onClose}>
@@ -80,18 +91,18 @@ export function FoodModal({
 
             {/* Season */}
             <View style={styles.seasonGrid}>
-              <View style={{ flexDirection: "row", gap: 16 }}>
+              <View style={styles.seasonRow}>
                 {months.slice(0, 6).map((item, i) => {
                   return (
                     <SeasonCheckbox
                       key={item}
-                      isChecked={season.includes(i + 1)}
+                      isChecked={seasonSet.has(i + 1)}
                       month={item}
                     />
                   );
                 })}
               </View>
-              <View style={{ flexDirection: "row", gap: 16 }}>
+              <View style={styles.seasonRow}>
                 {months.slice(6, 12).map((item, i) => {
                   return (
                     <SeasonCheckbox
@@ -105,13 +116,27 @@ export function FoodModal({
             </View>
 
             {/* Preference */}
-            <View style={{ flexDirection: "row", gap: 12, alignSelf: "stretch" }}>
-              <Pressable onPress={() => onPreference('like', name)} style={styles.preferenceButton}>
-                <Like width={48} height={48} color={ isLiked ? Colors.like : Colors.grey} />
+            <View style={styles.preferenceContainer}>
+              <Pressable
+                onPress={() => onPreference("like", name)}
+                style={styles.preferenceButton}
+              >
+                <Like
+                  width={48}
+                  height={48}
+                  color={isLiked ? Colors.like : Colors.grey}
+                />
                 <BBodyText>J'aime</BBodyText>
               </Pressable>
-              <Pressable onPress={() => onPreference('dislike', name)} style={styles.preferenceButton}>
-                <Dislike width={48} height={48} color={ isDisliked ? Colors.dislike : Colors.grey} />
+              <Pressable
+                onPress={() => onPreference("dislike", name)}
+                style={styles.preferenceButton}
+              >
+                <Dislike
+                  width={48}
+                  height={48}
+                  color={isDisliked ? Colors.dislike : Colors.grey}
+                />
                 <BBodyText>Je n'aime pas</BBodyText>
               </Pressable>
             </View>
@@ -120,7 +145,7 @@ export function FoodModal({
       </View>
     </TouchableWithoutFeedback>
   );
-}
+});
 
 const styles = StyleSheet.create({
   overlay: {
@@ -166,9 +191,18 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: 16,
   },
+  seasonRow: {
+    flexDirection: "row",
+    gap: 16,
+  },
+  preferenceContainer: {
+    flexDirection: "row",
+    gap: 12,
+    alignSelf: "stretch",
+  },
   preferenceButton: {
     flexDirection: "column",
     alignItems: "center",
     flex: 1,
-  }
+  },
 });

@@ -1,11 +1,17 @@
-import { View, StyleSheet, TextInput, TouchableOpacity } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Colors } from "../constants/Colors";
-
-import { Search } from "lucide-react-native";
-import { BLargeText } from "./texts/body/BLargeText";
+// Components
 import { IconButton } from "./IconButton";
-import { useEffect, useRef, useState } from "react";
+
+// Design
+import { Colors } from "../constants/Colors";
+import { BLargeText } from "./texts/body/BLargeText";
+
+// React
+import { View, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import { useCallback, useRef, useState } from "react";
+
+// Packages
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Search } from "lucide-react-native";
 
 export function CustomHeader({
   currentMonth,
@@ -29,6 +35,15 @@ export function CustomHeader({
   const [searching, setSearching] = useState<boolean>(false);
 
   const inputRef = useRef<TextInput>(null);
+
+  const handleSearch = useCallback(() => {
+    setSearching(true);
+  }, []);
+  
+  const handleBack = useCallback(() => {
+    setSearching(false);
+    onSearch('');
+  }, [onSearch]);
 
   return (
     <View
@@ -58,7 +73,7 @@ export function CustomHeader({
           <IconButton
             iconName="search"
             label="Rechercher"
-            onPress={() => setSearching(true)}
+            onPress={handleSearch}
           />
         </View>
       ) : (
@@ -66,10 +81,7 @@ export function CustomHeader({
           <IconButton
             iconName="arrowLeft"
             label="Retour"
-            onPress={() => { 
-              setSearching(false)
-              onSearch('')
-            }}
+            onPress={handleBack}
           />
           <TouchableOpacity
             style={styles.searchbar}

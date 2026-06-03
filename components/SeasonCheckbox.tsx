@@ -1,10 +1,15 @@
-import { View, StyleSheet } from "react-native";
+// Design
 import { BSmallText } from "./texts/body/BSmallText";
 import { Colors } from "@/constants/Colors";
 
+// React
+import { View, StyleSheet } from "react-native";
+import React from "react";
+
+// Packages
 import { Check } from "lucide-react-native";
 
-export function SeasonCheckbox({
+export const SeasonCheckbox = React.memo(function SeasonCheckbox({
   isChecked,
   month,
 }: {
@@ -21,7 +26,7 @@ export function SeasonCheckbox({
       <BSmallText>{month}</BSmallText>
     </View>
   );
-}
+});
 
 const styles = StyleSheet.create({
   checkboxContainer: {

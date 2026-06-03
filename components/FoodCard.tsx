@@ -1,14 +1,17 @@
+// Design
 import { Colors } from "@/constants/Colors";
-import { Pressable, StyleSheet, View } from "react-native";
 import { BBodyText } from "./texts/body/BBodyText";
 import { DBodyText } from "./texts/display/DBodyText";
 
+// React
+import { Pressable, StyleSheet, View } from "react-native";
+import React, { useMemo } from "react";
+
+// Assets
 import DefaultFood from "./../assets/food/abricot.svg";
 import { foodImages } from "./../assets/foodImages";
-
 import Like from "./../assets/icons/like.svg";
 import Dislike from "./../assets/icons/dislike.svg";
-import React from "react";
 
 export const FoodCard = React.memo(function FoodCard({
   name,
@@ -25,19 +28,24 @@ export const FoodCard = React.memo(function FoodCard({
   isLiked: boolean;
   isDisliked: boolean;
 }) {
-  const FoodImage = foodImages[img as keyof typeof foodImages] ?? DefaultFood;
+  const FoodImage = useMemo(
+    () =>
+      foodImages[img as keyof typeof foodImages] ??
+      DefaultFood,
+    [img]
+  );
 
   return (
-    <Pressable onPress={onPress} style={styles.card}>
+    <Pressable
+      style={({ pressed }) => [styles.card, pressed && styles.cardPressed]}
+      onPress={onPress}
+    >
       <View
-        style={{
-          flexDirection: "row",
-          width: "100%",
-          height: 24,
-          alignItems: "center",
-          justifyContent:
-            isLiked || isDisliked ? "space-between" : "flex-start",
-        }}
+        style={[
+          styles.cardHeader,
+          (isLiked || isDisliked) &&
+            styles.cardHeaderWithPreference,
+        ]}
       >
         <DBodyText style={type == "Légume" ? styles.vegetable : styles.fruit}>
           {type.charAt(0).toUpperCase()}
@@ -60,15 +68,28 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     gap: 4,
-    backgroundColor: Colors.surface,
     padding: 4,
     borderRadius: 8,
     shadowColor: Colors.textDefault,
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.1,
     shadowRadius: 8,
-    flex: 1/3,
+    flex: 1 / 3,
     margin: 4,
+    backgroundColor: Colors.surface,
+  },
+  cardPressed: {
+    backgroundColor: Colors.surfaceActive,
+  },
+  cardHeader: {
+    flexDirection: "row",
+    width: "100%",
+    height: 24,
+    alignItems: "center",
+    justifyContent: "flex-start"
+  },
+  cardHeaderWithPreference: {
+    justifyContent: "space-between"
   },
   vegetable: {
     color: Colors.vegetable,
